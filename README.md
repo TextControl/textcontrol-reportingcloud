@@ -11,7 +11,7 @@ This is the official PHP SDK for the ReportingCloud Web API. It is authored and 
 
 Learn more about ReportingCloud at:
 
-* [ReportingCloud web site](https://www.reporting.cloud/)
+* [ReportingCloud website](https://www.reporting.cloud/)
 
 * [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here
 
