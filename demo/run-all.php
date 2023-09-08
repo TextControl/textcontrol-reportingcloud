@@ -11,23 +11,12 @@ use TextControl\ReportingCloud\Stdlib\ConsoleUtils;
  * Return an ArrayObject FileInfos which should be executed
  *
  * @return ArrayObject
- *
  */
-$getDemos = function (): ArrayObject {
-
+$getDemos = static function (): ArrayObject {
     $arrayObject = new ArrayObject();
     $iterator    = new DirectoryIterator(__DIR__);
-
-    $extensions = [
-        'php',
-    ];
-
-    $skipFiles = [
-        basename(__FILE__),
-        'bootstrap.php',
-        'init.php',
-    ];
-
+    $extensions = ['php'];
+    $skipFiles = [basename(__FILE__), 'bootstrap.php', 'init.php'];
     foreach ($iterator as $fileInfo) {
         if (!in_array($fileInfo->getExtension(), $extensions, true)) {
             continue;
@@ -39,9 +28,7 @@ $getDemos = function (): ArrayObject {
         $value = clone $fileInfo;
         $arrayObject->offsetSet($index, $value);
     }
-
     $arrayObject->ksort();
-
     return $arrayObject;
 };
 
@@ -67,7 +54,7 @@ foreach ($fileInfos as $fileInfo) {
     ConsoleUtils::writeLn('...DONE.');
     ConsoleUtils::writeLn();
 
-    $counter++;
+    ++$counter;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

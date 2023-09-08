@@ -32,7 +32,7 @@ $imageBinaryDataBase64Encoded = base64_encode($imageBinaryData);
 $mergeData = [
     'title'  => 'Retro Speedometer from Classic Car',
     'source' => 'https://www.4freephotos.com/Retro-speedometer-from-classic-car-6342.html',
-    'photo'  => $imageBinaryDataBase64Encoded
+    'photo'  => $imageBinaryDataBase64Encoded,
 ];
 
 // Using ReportingCloud, merge the image data into the template and return binary data

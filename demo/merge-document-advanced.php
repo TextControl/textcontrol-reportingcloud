@@ -15,21 +15,15 @@ use TextControl\ReportingCloud\Stdlib\Path;
  * Return some random merge data to insert into the template
  *
  * @return array
- * @throws Exception
  */
-$getMergeDataRecord = function (): array {
-
+$getMergeDataRecord = static function (): array {
     $faker = FakerFactory::create();
-
     $dateFormat = 'j/n/Y';
     $domainName = 'textcontrol.com';
-
     $totalDiscount = 0;
     $totalSub = 0;
-
     $item = [];
-
-    for ($i = 0; $i <= random_int(1, 5); $i++) {
+    for ($i = 0; $i <= random_int(1, 5); ++$i) {
 
         $qty             = random_int(1, 10);
         $itemNo          = sprintf('RA%-X-%d', $i, random_int(10000, 99999));
@@ -39,7 +33,7 @@ $getMergeDataRecord = function (): array {
         $itemTotal       = ($qty * $itemUnitPrice);
         $discount        = $itemTotal * ($itemDiscount / 100);
 
-        $totalDiscount   = $totalDiscount + $discount;
+        $totalDiscount += $discount;
         $totalSub        = ($totalSub + $itemTotal) - $totalDiscount;
 
         $item[] = [
@@ -51,10 +45,9 @@ $getMergeDataRecord = function (): array {
             'item_total'       => $itemTotal,
         ];
     }
-
-    $totalTax = $totalSub * 0.10; // 10% sales tax
+    $totalTax = $totalSub * 0.10;
+    // 10% sales tax
     $total    = $totalSub + $totalTax;
-
     return [
         'yourcompany_companyname' => 'Text Control, LLC',
         'yourcompany_zip'         => '28226',
@@ -64,10 +57,10 @@ $getMergeDataRecord = function (): array {
         'yourcompany_fax'         => '704-544-0001',
         'yourcompany_url'         => sprintf('www.%s', $domainName),
         'yourcompany_email'       => sprintf('sales@%s', $domainName),
-        'invoice_no'              => sprintf('R%s', random_int(100000000, 9999999999)),
+        'invoice_no'              => sprintf('R%s', random_int(100_000_000, 9_999_999_999)),
         'billto_name'             => $faker->name,
         'billto_companyname'      => $faker->company,
-        'billto_customerid'       => random_int(100000000, 9999999999),
+        'billto_customerid'       => random_int(100_000_000, 9_999_999_999),
         'billto_zip'              => $faker->postcode,
         'billto_city'             => $faker->city,
         'billto_street'           => $faker->streetAddress,
@@ -106,7 +99,7 @@ $reportingCloud = new ReportingCloud([
 
 $mergeData = [];
 
-for ($i = 0; $i < 10; $i++) {
+for ($i = 0; 10 > $i; ++$i) {
     $mergeData[] = $getMergeDataRecord();
 }
 
@@ -114,10 +107,7 @@ for ($i = 0; $i < 10; $i++) {
 
 // Template is stored locally and uploaded to backend server on merge
 
-$sourceFilename = sprintf(
-    '%s/test_template.tx',
-    Path::resource()
-);
+$sourceFilename = sprintf('%s/test_template.tx', Path::resource());
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
@@ -126,10 +116,7 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $sourceFilename
 );
 
-$destinationFilename = sprintf(
-    '%s/sample_invoice_merged_local.pdf',
-    Path::output()
-);
+$destinationFilename = sprintf('%s/sample_invoice_merged_local.pdf', Path::output());
 
 // Write the document's binary data to disk
 
@@ -143,10 +130,7 @@ ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
 
 // Template is in template storage on backend server
 
-$sourceFilename = sprintf(
-    '%s/test_template.tx',
-    Path::resource()
-);
+$sourceFilename = sprintf('%s/test_template.tx', Path::resource());
 
 $reportingCloud->uploadTemplate($sourceFilename);
 
@@ -156,10 +140,7 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     'test_template.tx'
 );
 
-$destinationFilename = sprintf(
-    '%s/sample_invoice_merged_remote.pdf',
-    Path::output()
-);
+$destinationFilename = sprintf('%s/sample_invoice_merged_remote.pdf', Path::output());
 
 // Write the document's binary data to disk
 
@@ -190,10 +171,7 @@ $mergeSettings = [
     'culture'                    => 'en-US',
 ];
 
-$sourceFilename = sprintf(
-    '%s/test_template.tx',
-    Path::resource()
-);
+$sourceFilename = sprintf('%s/test_template.tx', Path::resource());
 
 $reportingCloud->uploadTemplate($sourceFilename);
 
@@ -206,10 +184,7 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeSettings
 );
 
-$destinationFilename = sprintf(
-    '%s/sample_invoice_merged_remote_merge_settings.pdf',
-    Path::output()
-);
+$destinationFilename = sprintf('%s/sample_invoice_merged_remote_merge_settings.pdf', Path::output());
 
 // Write the document's binary data to disk
 
@@ -224,10 +199,7 @@ ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
 // Template is stored locally and uploaded to backend server on merge
 // append=true (also default, when not set)
 
-$sourceFilename = sprintf(
-    '%s/test_template.tx',
-    Path::resource()
-);
+$sourceFilename = sprintf('%s/test_template.tx', Path::resource());
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
@@ -237,10 +209,7 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     true
 );
 
-$destinationFilename = sprintf(
-    '%s/sample_invoice_merged_append_true_all.pdf',
-    Path::output()
-);
+$destinationFilename = sprintf('%s/sample_invoice_merged_append_true_all.pdf', Path::output());
 
 // Write the document's binary data to disk
 
@@ -255,10 +224,7 @@ ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
 // Template stored locally and uploaded to backend server on merge
 // append=false
 
-$sourceFilename = sprintf(
-    '%s/test_template.tx',
-    Path::resource()
-);
+$sourceFilename = sprintf('%s/test_template.tx', Path::resource());
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
@@ -276,16 +242,9 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     // Specify destination file and filenames
 
-    $destinationFile = sprintf(
-        'sample_invoice_merged_append_false_%d.pdf',
-        $document
-    );
+    $destinationFile = sprintf('sample_invoice_merged_append_false_%d.pdf', $document);
 
-    $destinationFilename = sprintf(
-        '%s/%s',
-        Path::output(),
-        $destinationFile
-    );
+    $destinationFilename = sprintf('%s/%s', Path::output(), $destinationFile);
 
     // Write the document's binary data to disk
 

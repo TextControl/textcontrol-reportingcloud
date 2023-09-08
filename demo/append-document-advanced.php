@@ -15,7 +15,7 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
-// Create an array of document filenames and seperators that should be between the documents
+// Create an array of document filenames and separators that should be between the documents
 
 $documents = [
     [
@@ -50,11 +50,7 @@ $documentSettings = [
 
 // Using ReportingCloud, create a new PDF document, containing the above files and PDF document properties
 
-$binaryData = $reportingCloud->appendDocument(
-    $documents,
-    ReportingCloud::FILE_FORMAT_PDF,
-    $documentSettings
-);
+$binaryData = $reportingCloud->appendDocument($documents, ReportingCloud::FILE_FORMAT_PDF, $documentSettings);
 
 // Write the document's binary data to disk
 

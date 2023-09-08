@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud\Stdlib;
 
+use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Stdlib\FileUtils;
-use TextControlTest\ReportingCloud\AbstractReportingCloudTest;
 
 /**
  * Class FileUtilsTest
@@ -23,7 +23,7 @@ use TextControlTest\ReportingCloud\AbstractReportingCloudTest;
  * @package TextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class FileUtilsTest extends AbstractReportingCloudTest
+class FileUtilsTest extends TestCase
 {
     const BINARY_PATTERN = '~[^\x20-\x7E\t\r\n]~';
 

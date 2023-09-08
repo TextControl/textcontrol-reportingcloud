@@ -21,10 +21,7 @@ $destinationFilename = sprintf('%s/maelzel_machine.txt', Path::output());
 
 // Using ReportingCloud, convert the PDF file to TXT file
 
-$binaryData = $reportingCloud->convertDocument(
-    $sourceFilename,
-    ReportingCloud::FILE_FORMAT_TXT
-);
+$binaryData = $reportingCloud->convertDocument($sourceFilename, ReportingCloud::FILE_FORMAT_TXT);
 
 // Write the document's binary data to disk
 

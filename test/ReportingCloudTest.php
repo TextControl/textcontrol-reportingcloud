@@ -27,7 +27,7 @@ use GuzzleHttp\Client;
  * @package TextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ReportingCloudTest extends AbstractReportingCloudTest
+class ReportingCloudTest extends AbstractReportingCloudTestCase
 {
     // <editor-fold desc="Helpers tests">
 

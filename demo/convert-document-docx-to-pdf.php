@@ -21,10 +21,7 @@ $destinationFilename = sprintf('%s/construction_turk.pdf', Path::output());
 
 // Using ReportingCloud, convert the DOCX file to PDF file
 
-$binaryData = $reportingCloud->convertDocument(
-    $sourceFilename,
-    ReportingCloud::FILE_FORMAT_PDF
-);
+$binaryData = $reportingCloud->convertDocument($sourceFilename, ReportingCloud::FILE_FORMAT_PDF);
 
 // Write the document's binary data to disk
 

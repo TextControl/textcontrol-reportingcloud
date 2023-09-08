@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud\Stdlib;
 
-use TextControlTest\ReportingCloud\AbstractReportingCloudTest;
+use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Stdlib\Path;
 
 /**
@@ -23,7 +23,7 @@ use TextControl\ReportingCloud\Stdlib\Path;
  * @package TextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class PathTest extends AbstractReportingCloudTest
+class PathTest extends TestCase
 {
     public function testRoot(): void
     {

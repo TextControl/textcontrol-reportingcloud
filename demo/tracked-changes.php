@@ -31,34 +31,20 @@ foreach ($results as $result) {
 
     ConsoleUtils::writeLn();
 
-    switch ($result['change_kind']) {
-        case ReportingCloud::TRACKED_CHANGE_DELETED_TEXT:
-            $word = 'deleted';
-            break;
-        case ReportingCloud::TRACKED_CHANGE_INSERTED_TEXT:
-            $word = 'inserted';
-            break;
-        default:
-            $word = '';
-            break;
-    }
+    $word = match ($result['change_kind']) {
+        ReportingCloud::TRACKED_CHANGE_DELETED_TEXT => 'deleted',
+        ReportingCloud::TRACKED_CHANGE_INSERTED_TEXT => 'inserted',
+        default => '',
+    };
 
     ConsoleUtils::writeLn('Change kind was "%s" ("%s").', $word, $result['change_kind']);
 
-    switch ($result['highlight_mode']) {
-        case ReportingCloud::HIGHLIGHT_MODE_NEVER:
-            $word = 'never';
-            break;
-        case ReportingCloud::HIGHLIGHT_MODE_ACTIVATED:
-            $word = 'activated';
-            break;
-        case ReportingCloud::HIGHLIGHT_MODE_ALWAYS:
-            $word = 'always';
-            break;
-        default:
-            $word = '';
-            break;
-    }
+    $word = match ($result['highlight_mode']) {
+        ReportingCloud::HIGHLIGHT_MODE_NEVER => 'never',
+        ReportingCloud::HIGHLIGHT_MODE_ACTIVATED => 'activated',
+        ReportingCloud::HIGHLIGHT_MODE_ALWAYS => 'always',
+        default => '',
+    };
 
     ConsoleUtils::writeLn('Highlight mode was "%s" ("%s").', $word, $result['highlight_mode']);
 
