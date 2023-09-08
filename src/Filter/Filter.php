@@ -14,12 +14,6 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud\Filter;
 
-/**
- * Class Filter
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class Filter extends AbstractFilter
 {
     use FilterBooleanToStringTrait;

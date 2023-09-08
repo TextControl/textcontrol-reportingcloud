@@ -22,19 +22,11 @@ use TextControl\ReportingCloud\ReportingCloud;
 
 /**
  * Trait FilterTimestampToDateTimeTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait FilterTimestampToDateTimeTrait
 {
     /**
      * Convert a UNIX timestamp to the date/time format used by the backend (e.g. "2016-04-15T19:05:18+00:00").
-     *
-     * @param int $timestamp
-     *
-     * @return string
-     * @throws InvalidArgumentException
      */
     public static function filterTimestampToDateTime(int $timestamp): string
     {

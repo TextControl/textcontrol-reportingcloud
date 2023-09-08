@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud\Filter;
 
 /**
  * Abstract AbstractFilter
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 abstract class AbstractFilter
 {

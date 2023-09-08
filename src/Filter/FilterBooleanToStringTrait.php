@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud\Filter;
 
 /**
  * Trait FilterBooleanToStringTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait FilterBooleanToStringTrait
 {
@@ -29,10 +26,6 @@ trait FilterBooleanToStringTrait
      * backend does not recognize.
      *
      * The backend only recognizes query parameter ?param=true and ?param=false.
-     *
-     * @param bool $param
-     *
-     * @return string
      */
     public static function filterBooleanToString(bool $param): string
     {

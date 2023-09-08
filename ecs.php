@@ -35,7 +35,7 @@ return static function (ECSConfig $ecsConfig): void {
             sprintf('%s/test', __DIR__),
             sprintf('%s/src/Assert', __DIR__),
             #sprintf('%s/src/Exception', __DIR__),
-            #sprintf('%s/src/Filter', __DIR__),
+            sprintf('%s/src/Filter', __DIR__),
             sprintf('%s/src/PropertyMap', __DIR__),
             #sprintf('%s/src/Stdlib', __DIR__),
             sprintf('%s/ecs.php', __DIR__),
