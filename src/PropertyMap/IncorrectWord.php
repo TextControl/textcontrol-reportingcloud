@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud\PropertyMap;
 
 /**
  * IncorrectWord property map
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 class IncorrectWord extends AbstractPropertyMap
 {

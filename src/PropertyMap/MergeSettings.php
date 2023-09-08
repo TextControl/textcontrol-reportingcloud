@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud\PropertyMap;
 
 /**
  * MergeSettings property map
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 class MergeSettings extends AbstractPropertyMap
 {

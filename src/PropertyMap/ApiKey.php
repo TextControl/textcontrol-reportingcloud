@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud\PropertyMap;
 
 /**
  * ApiKey property map
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 class ApiKey extends AbstractPropertyMap
 {

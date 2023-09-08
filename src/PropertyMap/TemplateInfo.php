@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud\PropertyMap;
 
 /**
  * TemplateInfo property map
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 class TemplateInfo extends AbstractPropertyMap
 {

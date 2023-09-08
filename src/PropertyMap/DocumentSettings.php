@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud\PropertyMap;
 
 /**
  * DocumentSettings property map
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 class DocumentSettings extends AbstractPropertyMap
 {

@@ -16,16 +16,11 @@ namespace TextControl\ReportingCloud\PropertyMap;
 
 /**
  * Property map interface
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 interface PropertyMapInterface
 {
     /**
      * Return the property map
-     *
-     * @return array
      */
     public function getMap(): array;
 
@@ -33,8 +28,6 @@ interface PropertyMapInterface
      * Set the property map
      *
      * @param array $map Assoc array of property data
-     *
-     * @return self
      */
     public function setMap(array $map): self;
 }

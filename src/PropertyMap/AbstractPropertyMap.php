@@ -16,24 +16,17 @@ namespace TextControl\ReportingCloud\PropertyMap;
 
 /**
  * Abstract AbstractPropertyMap
- *
- * @package TextControl\ReportingCloud\PropertyMap
- * @author  Jonathan Maron (@JonathanMaron)
  */
 abstract class AbstractPropertyMap implements PropertyMapInterface
 {
     /**
      * Assoc array of properties
      * camelCase properties => Lower case underscore array keys
-     *
-     * @var array
      */
     protected array $map;
 
     /**
      * Return the property map
-     *
-     * @return array
      */
     public function getMap(): array
     {
@@ -44,8 +37,6 @@ abstract class AbstractPropertyMap implements PropertyMapInterface
      * Set the property map
      *
      * @param array $map Assoc array of property data
-     *
-     * @return self
      */
     public function setMap(array $map): self
     {
