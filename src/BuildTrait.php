@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace TextControl\ReportingCloud;
 
 use TextControl\ReportingCloud\Assert\Assert;
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\Filter\Filter;
 use TextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TextControl\ReportingCloud\PropertyMap\DocumentSettings as DocumentSettingsPropertyMap;
@@ -25,20 +24,14 @@ use TextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
  * Trait BuildTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait BuildTrait
 {
-    // <editor-fold desc="Methods">
     /**
      * Using the passed propertyMap, recursively build array
      *
      * @param array       $array       Array
      * @param PropertyMap $propertyMap PropertyMap
-     *
-     * @return array
      */
     protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array
     {
@@ -60,11 +53,6 @@ trait BuildTrait
 
     /**
      * Using passed documentsData array, build array for backend
-     *
-     * @param array $array
-     *
-     * @return array
-     * @throws InvalidArgumentException
      */
     protected function buildDocumentsArray(array $array): array
     {
@@ -74,18 +62,15 @@ trait BuildTrait
             assert(is_array($inner));
             $document = [];
             foreach ($inner as $key => $value) {
-                switch ($key) {
-                    case 'filename':
-                        assert(is_string($value));
-                        Assert::assertFilenameExists($value);
-                        Assert::assertDocumentExtension($value);
-                        $document['document'] = FileUtils::read($value, true);
-                        break;
-                    case 'divider':
-                        assert(is_int($value));
-                        Assert::assertDocumentDivider($value);
-                        $document['documentDivider'] = $value;
-                        break;
+                if ('filename' === $key) {
+                    assert(is_string($value));
+                    Assert::assertFilenameExists($value);
+                    Assert::assertDocumentExtension($value);
+                    $document['document'] = FileUtils::read($value, true);
+                } elseif ('divider' === $key) {
+                    assert(is_int($value));
+                    Assert::assertDocumentDivider($value);
+                    $document['documentDivider'] = $value;
                 }
             }
             $ret[] = $document;
@@ -96,11 +81,6 @@ trait BuildTrait
 
     /**
      * Using passed documentsSettings array, build array for backend
-     *
-     * @param array $array
-     *
-     * @return array
-     * @throws InvalidArgumentException
      */
     protected function buildDocumentSettingsArray(array $array): array
     {
@@ -110,7 +90,7 @@ trait BuildTrait
 
         $map = $propertyMap->getMap();
 
-        if (0 === count($map)) {
+        if ([] === $map) {
             return $ret;
         }
 
@@ -133,9 +113,6 @@ trait BuildTrait
      * Using passed mergeSettings array, build array for backend
      *
      * @param array $array MergeSettings array
-     *
-     * @return array
-     * @throws InvalidArgumentException
      */
     protected function buildMergeSettingsArray(array $array): array
     {
@@ -145,7 +122,7 @@ trait BuildTrait
 
         $map = $propertyMap->getMap();
 
-        if (0 === count($map)) {
+        if ([] === $map) {
             return $ret;
         }
 
@@ -175,24 +152,15 @@ trait BuildTrait
 
     /**
      * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
-     *
-     * @param array $array
-     *
-     * @return array
      */
     protected function buildFindAndReplaceDataArray(array $array): array
     {
         $ret = [];
 
         foreach ($array as $key => $value) {
-            $ret[] = [
-                $key,
-                $value,
-            ];
+            $ret[] = [$key, $value];
         }
 
         return $ret;
     }
-
-    // </editor-fold>
 }
