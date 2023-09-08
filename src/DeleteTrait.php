@@ -108,7 +108,7 @@ trait DeleteTrait
     private function delete(
         string $uri,
         array $query = [],
-        $json = '',
+        mixed $json = '',
         int $statusCode = 0
     ): bool {
 
