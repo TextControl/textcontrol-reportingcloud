@@ -79,12 +79,10 @@ trait DeleteTrait
      */
     private function delete(string $uri, array $query = [], mixed $json = '', int $statusCode = 0): bool
     {
-        $options = [
+        $response = $this->request(HttpMethod::METHOD_DELETE, $this->uri($uri), [
             RequestOptions::QUERY => $query,
             RequestOptions::JSON  => $json,
-        ];
-
-        $response = $this->request(HttpMethod::METHOD_DELETE, $this->uri($uri), $options);
+        ]);
 
         return $statusCode === $response->getStatusCode();
     }

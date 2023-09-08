@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud;
 
-use GuzzleHttp\Client;
 use TextControl\ReportingCloud\Assert\Assert;
 use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\Exception\RuntimeException;
@@ -102,20 +101,6 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
 
         self::assertTrue($this->reportingCloud->getDebug());
         self::assertTrue($this->reportingCloud->getTest());
-    }
-
-    public function testGetClientInstanceOf(): void
-    {
-        self::assertInstanceOf(Client::class, $this->reportingCloud->getClient());
-    }
-
-    public function testGetClientWithUsernameAndPassword(): void
-    {
-        $this->reportingCloud->setApiKey('');
-        $this->reportingCloud->setUsername('phpunit-username');
-        $this->reportingCloud->setPassword('phpunit-password');
-
-        self::assertInstanceOf(Client::class, $this->reportingCloud->getClient());
     }
 
     public function testDefaultProperties(): void
@@ -510,7 +495,6 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
         $response = $this->reportingCloud->getTemplateList();
 
         assert(isset($response[0]));
-        self::assertArrayHasKey(0, $response);
 
         assert(is_array($response[0]));
         self::assertArrayHasKey('template_name', $response[0]);
@@ -764,7 +748,6 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
             $documentSettings
         );
 
-        self::assertNotFalse($response);
         self::assertGreaterThanOrEqual(1024, mb_strlen($response));
     }
 
@@ -791,7 +774,6 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
 
         $response = $this->reportingCloud->convertDocument($documentFilename, ReportingCloud::FILE_FORMAT_TXT);
 
-        self::assertNotFalse($response);
         self::assertEquals("A Test File\r\n", $response);
     }
 

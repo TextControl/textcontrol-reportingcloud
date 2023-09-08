@@ -22,14 +22,11 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertDocumentDividerTestTrait
 {
-    // <editor-fold desc="Abstract methods">
     abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
-
-    // </editor-fold>
 
     public function testAssertDocumentDivider(): void
     {
@@ -37,6 +34,7 @@ trait AssertDocumentDividerTestTrait
         Assert::assertDocumentDivider(2);
         Assert::assertDocumentDivider(3);
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 

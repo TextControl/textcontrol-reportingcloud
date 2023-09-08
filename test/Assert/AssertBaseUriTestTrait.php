@@ -22,19 +22,17 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertBaseUriTestTrait
 {
-    // <editor-fold desc="Abstract methods">
     abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
 
-    // </editor-fold>
-
     public function testAssertBaseUri(): void
     {
         Assert::assertBaseUri('https://phpunit-api.reporting.cloud');
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 
@@ -47,6 +45,7 @@ trait AssertBaseUriTestTrait
 
         Assert::assertBaseUri('https://api.example.com');
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 
@@ -59,6 +58,7 @@ trait AssertBaseUriTestTrait
 
         Assert::assertBaseUri('https://api.reporting.cloud.de');
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 }

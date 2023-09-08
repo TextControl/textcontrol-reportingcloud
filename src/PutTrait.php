@@ -70,20 +70,21 @@ trait PutTrait
     {
         $ret = '';
 
-        $options = [
+        $response = $this->request(HttpMethod::METHOD_PUT, $this->uri($uri), [
             RequestOptions::QUERY => $query,
             RequestOptions::JSON  => $json,
-        ];
-
-        $response = $this->request(HttpMethod::METHOD_PUT, $this->uri($uri), $options);
+        ]);
 
         if ($statusCode === $response->getStatusCode()) {
             try {
-                $ret = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
-                assert(is_string($ret));
+                $body    = $response->getBody();
+                $content = $body->getContents();
+                $ret     = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
             } catch (JsonException) {
             }
         }
+
+        assert(is_string($ret));
 
         return $ret;
     }

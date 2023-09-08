@@ -8,6 +8,8 @@ parameters:
         - bin
         - data
         - demo
+        - src
         - test
+        - bootstrap.php
         - ecs.php
         - rector.php

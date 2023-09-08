@@ -22,20 +22,18 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertBase64DataTestTrait
 {
-    // <editor-fold desc="Abstract methods">
     abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
 
-    // </editor-fold>
-
     public function testAssertBase64Data(): void
     {
         $value = base64_encode('ReportingCloud rocks!');
         Assert::assertBase64Data($value);
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 

@@ -14,8 +14,10 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud\Filter;
 
+use PHPUnit\Framework\Attributes\DataProviderExternal;
 use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Filter\Filter;
+use TextControlTest\ReportingCloud\Filter\TestAsset\DefaultProvider;
 
 class TimestampToDateTimeTest extends TestCase
 {
@@ -32,10 +34,7 @@ class TimestampToDateTimeTest extends TestCase
         unset($this->defaultTimezone);
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProviderExternal(
-        \TextControlTest\ReportingCloud\Filter\TestAsset\DefaultProvider::class,
-        'defaultProvider'
-    )]
+    #[DataProviderExternal(DefaultProvider::class, 'defaultProvider')]
     public function testValid(string $timeZone, string $dateTimeString, int $timestamp): void
     {
         $identifiers = timezone_identifiers_list();

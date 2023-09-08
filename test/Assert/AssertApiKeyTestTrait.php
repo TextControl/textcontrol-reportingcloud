@@ -22,19 +22,17 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertApiKeyTestTrait
 {
-    // <editor-fold desc="Abstract methods">
     abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
 
-    // </editor-fold>
-
     public function testAssertApiKey(): void
     {
         Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 

@@ -22,20 +22,18 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertDateTimeTestTrait
 {
-    // <editor-fold desc="Abstract methods">
     abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
 
-    // </editor-fold>
-
     public function testAssertDateTime(): void
     {
         Assert::assertDateTime('2016-06-02T15:49:57+00:00');
         Assert::assertDateTime('1980-06-02T15:49:57+00:00');
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 

@@ -22,14 +22,11 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertTimestampTestTrait
 {
-    // <editor-fold desc="Abstract methods">
     abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
-
-    // </editor-fold>
 
     public function testAssertTimestamp(): void
     {
@@ -39,6 +36,7 @@ trait AssertTimestampTestTrait
         Assert::assertTimestamp(10_000_000);
         Assert::assertTimestamp(PHP_INT_MAX);
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 

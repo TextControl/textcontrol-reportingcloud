@@ -22,14 +22,11 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertCultureTestTrait
 {
-    // <editor-fold desc="Abstract methods">
     abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
-
-    // </editor-fold>
 
     public function testAssertCulture(): void
     {
@@ -37,6 +34,7 @@ trait AssertCultureTestTrait
         Assert::assertCulture('fr-FR');
         Assert::assertCulture('en-US');
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 

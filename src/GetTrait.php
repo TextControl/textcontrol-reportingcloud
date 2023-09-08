@@ -17,10 +17,9 @@ namespace TextControl\ReportingCloud;
 use Ctw\Http\HttpMethod;
 use Ctw\Http\HttpStatus;
 use GuzzleHttp\RequestOptions;
+use JsonException;
 use Psr\Http\Message\ResponseInterface;
 use TextControl\ReportingCloud\Assert\Assert;
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TextControl\ReportingCloud\Exception\RuntimeException;
 use TextControl\ReportingCloud\Filter\Filter;
 use TextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
@@ -31,53 +30,11 @@ use TextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyM
 
 /**
  * Trait GetTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait GetTrait
 {
-    // <editor-fold desc="Abstract methods">
-
-    /**
-     * Construct URI with version number
-     *
-     * @param string $uri URI
-     *
-     * @return string
-     */
-    abstract protected function uri(string $uri): string;
-
-    /**
-     * Request the URI with options
-     *
-     * @param string $method  HTTP method
-     * @param string $uri     URI
-     * @param array  $options Options
-     *
-     * @return ResponseInterface
-     * @throws RuntimeException
-     */
-    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
-
-    /**
-     * Using the passed propertyMap, recursively build array
-     *
-     * @param array       $array       Array
-     * @param PropertyMap $propertyMap PropertyMap
-     *
-     * @return array
-     */
-    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array;
-
-    // </editor-fold>
-
-    // <editor-fold desc="Methods">
-
     /**
      * Return an associative array of API keys associated with the Reporting Cloud account
-     *
-     * @return array
      */
     public function getApiKeys(): array
     {
@@ -106,11 +63,8 @@ trait GetTrait
      *
      * Return an empty array, if no misspelled words are found in the corpus of text.
      *
-     * @param string $text     Corpus of text that should be spell checked
+     * @param string $text Corpus of text that should be spell checked
      * @param string $language Language of specified text
-     *
-     * @return array
-     * @throws InvalidArgumentException
      */
     public function proofingCheck(string $text, string $language): array
     {
@@ -136,8 +90,6 @@ trait GetTrait
 
     /**
      * Return an array of available dictionaries on the Reporting Cloud service
-     *
-     * @return array
      */
     public function getAvailableDictionaries(): array
     {
@@ -155,12 +107,9 @@ trait GetTrait
     /**
      * Return an array of suggestions for a misspelled word
      *
-     * @param string $word     Word that should be spell checked
+     * @param string $word Word that should be spell checked
      * @param string $language Language of specified text
-     * @param int    $max      Maximum number of suggestions to return
-     *
-     * @return array
-     * @throws InvalidArgumentException
+     * @param int    $max Maximum number of suggestions to return
      */
     public function getProofingSuggestions(string $word, string $language, int $max = 10): array
     {
@@ -187,9 +136,6 @@ trait GetTrait
      * Return an array of merge blocks and merge fields in a template file in template storage
      *
      * @param string $templateName Template name
-     *
-     * @return array
-     * @throws InvalidArgumentException
      */
     public function getTemplateInfo(string $templateName): array
     {
@@ -217,13 +163,10 @@ trait GetTrait
      * Return an array of binary data with each record containing one thumbnail.
      *
      * @param string $templateName Template name
-     * @param int    $zoomFactor   Zoom factor
-     * @param int    $fromPage     From page
-     * @param int    $toPage       To page
-     * @param string $imageFormat  Image format
-     *
-     * @return array
-     * @throws InvalidArgumentException
+     * @param int    $zoomFactor Zoom factor
+     * @param int    $fromPage From page
+     * @param int    $toPage To page
+     * @param string $imageFormat Image format
      */
     public function getTemplateThumbnails(
         string $templateName,
@@ -255,6 +198,7 @@ trait GetTrait
                 assert(is_string($value));
                 $result[$key] = $value;
             }
+
             return $result;
         }
 
@@ -263,26 +207,16 @@ trait GetTrait
 
     /**
      * Return the number of templates in template storage
-     *
-     * @return int
      */
     public function getTemplateCount(): int
     {
         $count = $this->get('/templates/count', [], '', HttpStatus::STATUS_OK);
 
-        if (is_numeric($count)) {
-            $count = (int) $count;
-        } else {
-            $count = 0;
-        }
-
-        return $count;
+        return is_numeric($count) ? (int) $count : 0;
     }
 
     /**
      * Return an array properties for the templates in template storage
-     *
-     * @return array
      */
     public function getTemplateList(): array
     {
@@ -294,7 +228,7 @@ trait GetTrait
 
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
-            array_walk($ret, function (array &$record): void {
+            array_walk($ret, static function (array &$record): void {
                 $key = 'modified';
                 if (isset($record[$key])) {
                     Assert::assertDateTime($record[$key]);
@@ -310,9 +244,6 @@ trait GetTrait
      * Return the number of pages in a template in template storage
      *
      * @param string $templateName Template name
-     *
-     * @return int
-     * @throws InvalidArgumentException
      */
     public function getTemplatePageCount(string $templateName): int
     {
@@ -324,22 +255,13 @@ trait GetTrait
 
         $count = $this->get('/templates/pagecount', $query, '', HttpStatus::STATUS_OK);
 
-        if (is_numeric($count)) {
-            $count = (int) $count;
-        } else {
-            $count = 0;
-        }
-
-        return $count;
+        return is_numeric($count) ? (int) $count : 0;
     }
 
     /**
      * Return true, if the template exists in template storage
      *
      * @param string $templateName Template name
-     *
-     * @return bool
-     * @throws InvalidArgumentException
      */
     public function templateExists(string $templateName): bool
     {
@@ -354,8 +276,6 @@ trait GetTrait
 
     /**
      * Return an array of available fonts on the Reporting Cloud service
-     *
-     * @return array
      */
     public function getFontList(): array
     {
@@ -372,9 +292,6 @@ trait GetTrait
 
     /**
      * Return an array properties for the ReportingCloud account
-     *
-     * @return array
-     * @throws InvalidArgumentException
      */
     public function getAccountSettings(): array
     {
@@ -400,9 +317,6 @@ trait GetTrait
      * Download the binary data of a template from template storage
      *
      * @param string $templateName Template name
-     *
-     * @return string
-     * @throws InvalidArgumentException
      */
     public function downloadTemplate(string $templateName): string
     {
@@ -414,7 +328,7 @@ trait GetTrait
 
         $result = $this->get('/templates/download', $query, '', HttpStatus::STATUS_OK);
 
-        if (is_string($result) && strlen($result) > 0) {
+        if (is_string($result) && 0 < strlen($result)) {
             $decoded = base64_decode($result, true);
             if (is_string($decoded)) {
                 return $decoded;
@@ -425,37 +339,55 @@ trait GetTrait
     }
 
     /**
+     * Construct URI with version number
+     *
+     * @param string $uri URI
+     */
+    abstract protected function uri(string $uri): string;
+
+    /**
+     * Request the URI with options
+     *
+     * @param string $method HTTP method
+     * @param string $uri URI
+     * @param array  $options Options
+     */
+    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
+
+    /**
+     * Using the passed propertyMap, recursively build array
+     *
+     * @param array       $array Array
+     * @param PropertyMap $propertyMap PropertyMap
+     */
+    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array;
+
+    /**
      * Execute a GET request via REST client
      *
-     * @param string $uri        URI
-     * @param array  $query      Query
-     * @param mixed  $json       JSON
+     * @param string $uri URI
+     * @param array  $query Query
+     * @param mixed  $json JSON
      * @param int    $statusCode Required HTTP status code for response
-     *
-     * @return mixed
      */
-    private function get(
-        string $uri,
-        array $query = [],
-        mixed $json = '',
-        int $statusCode = 0
-    ) {
+    private function get(string $uri, array $query = [], mixed $json = '', int $statusCode = 0): mixed
+    {
+        $ret = null;
 
-        $ret = '';
-
-        $options = [
+        $response = $this->request(HttpMethod::METHOD_GET, $this->uri($uri), [
             RequestOptions::QUERY => $query,
             RequestOptions::JSON  => $json,
-        ];
-
-        $response = $this->request(HttpMethod::METHOD_GET, $this->uri($uri), $options);
+        ]);
 
         if ($statusCode === $response->getStatusCode()) {
-            $ret = json_decode($response->getBody()->getContents(), true);
+            try {
+                $body    = $response->getBody();
+                $content = $body->getContents();
+                $ret     = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+            } catch (JsonException) {
+            }
         }
 
         return $ret;
     }
-
-    // </editor-fold>
 }

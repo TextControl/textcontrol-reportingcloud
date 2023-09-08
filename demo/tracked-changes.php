@@ -25,28 +25,28 @@ foreach ($results as $result) {
 
     assert(is_array($result));
 
-    foreach (array_keys($result) as $key) {
-        ConsoleUtils::writeLn('%s: %s', $key);
+    foreach ($result as $key => $value) {
+        ConsoleUtils::writeLn('%s: %s', [$key, $value]);
     }
 
     ConsoleUtils::writeLn();
 
     $word = match ($result['change_kind']) {
-        ReportingCloud::TRACKED_CHANGE_DELETED_TEXT => 'deleted',
+        ReportingCloud::TRACKED_CHANGE_DELETED_TEXT  => 'deleted',
         ReportingCloud::TRACKED_CHANGE_INSERTED_TEXT => 'inserted',
-        default => '',
+        default                                      => '',
     };
 
-    ConsoleUtils::writeLn('Change kind was "%s" ("%s").', $word);
+    ConsoleUtils::writeLn('Change kind was "%s" ("%s").', [$word, $result['change_kind']]);
 
     $word = match ($result['highlight_mode']) {
-        ReportingCloud::HIGHLIGHT_MODE_NEVER => 'never',
+        ReportingCloud::HIGHLIGHT_MODE_NEVER     => 'never',
         ReportingCloud::HIGHLIGHT_MODE_ACTIVATED => 'activated',
-        ReportingCloud::HIGHLIGHT_MODE_ALWAYS => 'always',
-        default => '',
+        ReportingCloud::HIGHLIGHT_MODE_ALWAYS    => 'always',
+        default                                  => '',
     };
 
-    ConsoleUtils::writeLn('Highlight mode was "%s" ("%s").', $word);
+    ConsoleUtils::writeLn('Highlight mode was "%s" ("%s").', [$word, $result['highlight_mode']]);
 
     ConsoleUtils::writeLn();
 }
@@ -57,5 +57,5 @@ $result = $reportingCloud->removeTrackedChange($sourceFilename, 1, true);
 
 if (isset($result['document']) && is_string($result['document'])) {
     FileUtils::write($destinationFilename, $result['document']);
-    ConsoleUtils::writeLn('Written updated document to "%s".', $destinationFilename);
+    ConsoleUtils::writeLn('Written updated document to "%s".', [$destinationFilename]);
 }

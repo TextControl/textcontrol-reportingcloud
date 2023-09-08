@@ -22,14 +22,11 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertDocumentExtensionTestTrait
 {
-    // <editor-fold desc="Abstract methods">
     abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
-
-    // </editor-fold>
 
     public function testAssertDocumentExtension(): void
     {
@@ -48,6 +45,7 @@ trait AssertDocumentExtensionTestTrait
         Assert::assertDocumentExtension('c:\path\to\document.doc');
         Assert::assertDocumentExtension('c:\PATH\TO\DOCUMENT.DOC');
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 

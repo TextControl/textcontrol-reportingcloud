@@ -22,20 +22,18 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertRemoveTestTrait
 {
-    // <editor-fold desc="Abstract methods">
     abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
 
-    // </editor-fold>
-
     public function testAssertRemove(): void
     {
         Assert::assertRemove(true);
         Assert::assertRemove(false);
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 
@@ -46,6 +44,7 @@ trait AssertRemoveTestTrait
 
         Assert::assertRemove(1);
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 
@@ -56,6 +55,7 @@ trait AssertRemoveTestTrait
 
         Assert::assertRemove('a');
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 
@@ -66,6 +66,7 @@ trait AssertRemoveTestTrait
 
         Assert::assertRemove([1]);
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 }

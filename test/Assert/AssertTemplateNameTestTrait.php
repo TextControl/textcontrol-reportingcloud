@@ -22,14 +22,11 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertTemplateNameTestTrait
 {
-    // <editor-fold desc="Abstract methods">
     abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
     abstract public function expectException(string $exception): void;
 
     abstract public function expectExceptionMessage(string $message): void;
-
-    // </editor-fold>
 
     public function testAssertTemplateName(): void
     {
@@ -41,6 +38,7 @@ trait AssertTemplateNameTestTrait
         Assert::assertTemplateName('template.DOC');
         Assert::assertTemplateName('TEMPLATE.DOC');
 
+        // @phpstan-ignore-next-line
         self::assertTrue(true);
     }
 
