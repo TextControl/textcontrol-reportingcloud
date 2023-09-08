@@ -14,10 +14,10 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud;
 
-use JsonException;
 use Ctw\Http\HttpMethod;
 use Ctw\Http\HttpStatus;
 use GuzzleHttp\RequestOptions;
+use JsonException;
 use Psr\Http\Message\ResponseInterface;
 use TextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 
