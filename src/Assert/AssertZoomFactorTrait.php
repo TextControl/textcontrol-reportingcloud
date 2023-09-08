@@ -14,7 +14,6 @@ namespace TextControl\ReportingCloud\Assert;
  * @copyright © 2023 Text Control GmbH
  */
 
-
 /**
  * Trait AssertZoomFactorTrait
  */
