@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://git.io/Jejj2 for the canonical source repository
  * @license   https://git.io/Jejjr
- * @copyright © 2022 Text Control GmbH
+ * @copyright © 2023 Text Control GmbH
  */
 
 namespace TextControlTest\ReportingCloud\Stdlib;
@@ -97,7 +97,7 @@ class ConsoleUtilsTest extends AbstractReportingCloudTestCase
         $expected = '10 x hello.' . PHP_EOL;
 
         ob_start();
-        ConsoleUtils::writeLn('%d x hello.', 10);
+        ConsoleUtils::writeLn('%d x hello.', [10]);
         $actual = ob_get_clean();
 
         self::assertEquals($expected, $actual);
@@ -108,7 +108,7 @@ class ConsoleUtilsTest extends AbstractReportingCloudTestCase
         $expected = '10 x hello "world".' . PHP_EOL;
 
         ob_start();
-        ConsoleUtils::writeLn('%d x hello "%s".', 10, 'world');
+        ConsoleUtils::writeLn('%d x hello "%s".', [10, 'world']);
         $actual = ob_get_clean();
 
         self::assertEquals($expected, $actual);

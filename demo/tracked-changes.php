@@ -25,8 +25,8 @@ foreach ($results as $result) {
 
     assert(is_array($result));
 
-    foreach ($result as $key => $value) {
-        ConsoleUtils::writeLn('%s: %s', $key, $value);
+    foreach (array_keys($result) as $key) {
+        ConsoleUtils::writeLn('%s: %s', $key);
     }
 
     ConsoleUtils::writeLn();
@@ -37,7 +37,7 @@ foreach ($results as $result) {
         default => '',
     };
 
-    ConsoleUtils::writeLn('Change kind was "%s" ("%s").', $word, $result['change_kind']);
+    ConsoleUtils::writeLn('Change kind was "%s" ("%s").', $word);
 
     $word = match ($result['highlight_mode']) {
         ReportingCloud::HIGHLIGHT_MODE_NEVER => 'never',
@@ -46,7 +46,7 @@ foreach ($results as $result) {
         default => '',
     };
 
-    ConsoleUtils::writeLn('Highlight mode was "%s" ("%s").', $word, $result['highlight_mode']);
+    ConsoleUtils::writeLn('Highlight mode was "%s" ("%s").', $word);
 
     ConsoleUtils::writeLn();
 }

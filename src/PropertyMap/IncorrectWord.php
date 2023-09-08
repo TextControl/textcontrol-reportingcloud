@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://git.io/Jejj2 for the canonical source repository
  * @license   https://git.io/Jejjr
- * @copyright © 2022 Text Control GmbH
+ * @copyright © 2023 Text Control GmbH
  */
 
 namespace TextControl\ReportingCloud\PropertyMap;
@@ -24,14 +24,12 @@ class IncorrectWord extends AbstractPropertyMap
      */
     public function __construct()
     {
-        $map = [
+        $this->setMap([
             'isDuplicate' => 'is_duplicate',
             'language'    => 'language',
             'length'      => 'length',
             'start'       => 'start',
             'text'        => 'text',
-        ];
-
-        $this->setMap($map);
+        ]);
     }
 }

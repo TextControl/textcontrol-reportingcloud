@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://git.io/Jejj2 for the canonical source repository
  * @license   https://git.io/Jejjr
- * @copyright © 2022 Text Control GmbH
+ * @copyright © 2023 Text Control GmbH
  */
 
 namespace TextControl\ReportingCloud\Filter;
@@ -39,8 +39,8 @@ trait FilterTimestampToDateTimeTrait
             $dateTime->setTimestamp($timestamp);
             $dateTime->setTimezone($dateTimeZone);
             $ret = $dateTime->format($dateFormat);
-        } catch (Exception $e) {
-            throw new InvalidArgumentException($e->getMessage(), (int) $e->getCode());
+        } catch (Exception $exception) {
+            throw new InvalidArgumentException($exception->getMessage(), (int) $exception->getCode());
         }
 
         return $ret;

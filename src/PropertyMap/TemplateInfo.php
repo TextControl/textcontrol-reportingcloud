@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://git.io/Jejj2 for the canonical source repository
  * @license   https://git.io/Jejjr
- * @copyright © 2022 Text Control GmbH
+ * @copyright © 2023 Text Control GmbH
  */
 
 namespace TextControl\ReportingCloud\PropertyMap;
@@ -24,7 +24,7 @@ class TemplateInfo extends AbstractPropertyMap
      */
     public function __construct()
     {
-        $map = [
+        $this->setMap([
             'dateTimeFormat'         => 'date_time_format',
             'mergeBlocks'            => 'merge_blocks',
             'mergeFields'            => 'merge_fields',
@@ -36,8 +36,6 @@ class TemplateInfo extends AbstractPropertyMap
             'textAfter'              => 'text_after',
             'textBefore'             => 'text_before',
             'userDocumentProperties' => 'user_document_properties',
-        ];
-
-        $this->setMap($map);
+        ]);
     }
 }

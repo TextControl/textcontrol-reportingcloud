@@ -9,16 +9,13 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://git.io/Jejj2 for the canonical source repository
  * @license   https://git.io/Jejjr
- * @copyright © 2022 Text Control GmbH
+ * @copyright © 2023 Text Control GmbH
  */
 
 namespace TextControl\ReportingCloud\Stdlib;
 
 /**
  * ReportingCloud console helper (used only for tests and demos)
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 class ConsoleUtils extends AbstractStdlib
 {
@@ -26,30 +23,28 @@ class ConsoleUtils extends AbstractStdlib
      * Name of PHP constant or environmental variable storing API key
      *
      * @const REPORTING_CLOUD_API_KEY
+     * @var string
      */
-    public const API_KEY = 'REPORTING_CLOUD_API_KEY';
+    final public const API_KEY = 'REPORTING_CLOUD_API_KEY';
 
     /**
      * Name of PHP constant or environmental variable storing base URI
      *
      * @const REPORTING_CLOUD_BASE_URI
+     * @var string
      */
-    public const BASE_URI = 'REPORTING_CLOUD_BASE_URI';
+    final public const BASE_URI = 'REPORTING_CLOUD_BASE_URI';
 
     /**
      * Check that either the API key has been defined in environment variables
-     *
-     * @return bool
      */
     public static function checkCredentials(): bool
     {
-        return strlen(self::apiKey()) > 0;
+        return 0 < strlen(self::apiKey());
     }
 
     /**
      * Return the ReportingCloud API key from a PHP constant or environmental variable
-     *
-     * @return string
      */
     public static function apiKey(): string
     {
@@ -58,8 +53,6 @@ class ConsoleUtils extends AbstractStdlib
 
     /**
      * Return the ReportingCloud base URI from a PHP constant or environmental variable
-     *
-     * @return string
      */
     public static function baseUri(): string
     {
@@ -68,8 +61,6 @@ class ConsoleUtils extends AbstractStdlib
 
     /**
      * Return error message explaining how to configure PHP constant or environmental variables
-     *
-     * @return string
      */
     public static function errorMessage(): string
     {
@@ -126,24 +117,18 @@ END;
 
     /**
      * Dump information about a variable
-     *
-     * @param mixed $value
-     *
      */
-    public static function dump($value): void
+    public static function dump(mixed $value): void
     {
         /** @scrutinizer ignore-call */ var_dump($value);
     }
 
     /**
      * Write a line to the console
-     *
-     * @param string $format
-     * @param mixed  ...$args
      */
-    public static function writeLn(string $format = '', ...$args): void
+    public static function writeLn(string $format = '', array $args = []): void
     {
-        if (count($args) > 0) {
+        if ([] !== $args) {
             echo vsprintf($format, $args);
         } else {
             echo $format;
@@ -154,22 +139,18 @@ END;
 
     /**
      * Return a value from a PHP constant or environmental variable
-     *
-     * @param string $key
-     *
-     * @return string
      */
     private static function getValueFromConstOrEnvVar(string $key): string
     {
         $value = self::getValueFromConst($key);
 
-        if (strlen($value) > 0) {
+        if (0 < strlen($value)) {
             return $value;
         }
 
         $value = self::getValueFromEnvVar($key);
 
-        if (strlen($value) > 0) {
+        if (0 < strlen($value)) {
             return $value;
         }
 
@@ -178,10 +159,6 @@ END;
 
     /**
      * Return a value from a PHP constant
-     *
-     * @param string $key
-     *
-     * @return string
      */
     private static function getValueFromConst(string $key): string
     {
@@ -189,7 +166,7 @@ END;
             $value = constant($key);
             if (is_string($value)) {
                 $value = trim($value);
-                if (strlen($value) > 0) {
+                if (0 < strlen($value)) {
                     return $value;
                 }
             }
@@ -200,10 +177,6 @@ END;
 
     /**
      * Return a value from an environmental variable
-     *
-     * @param string $key
-     *
-     * @return string
      */
     private static function getValueFromEnvVar(string $key): string
     {
@@ -211,7 +184,7 @@ END;
 
         if (is_string($value)) {
             $value = trim($value);
-            if (strlen($value) > 0) {
+            if (0 < strlen($value)) {
                 return $value;
             }
         }

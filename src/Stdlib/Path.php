@@ -9,23 +9,15 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://git.io/Jejj2 for the canonical source repository
  * @license   https://git.io/Jejjr
- * @copyright © 2022 Text Control GmbH
+ * @copyright © 2023 Text Control GmbH
  */
 
 namespace TextControl\ReportingCloud\Stdlib;
 
-/**
- * Class Path
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class Path
 {
     /**
      * Return the root path of PHP SDK for ReportingCloud Web API
-     *
-     * @return string
      */
     public static function root(): string
     {
@@ -34,8 +26,6 @@ class Path
 
     /**
      * Return the binary path of PHP SDK for ReportingCloud Web API
-     *
-     * @return string
      */
     public static function bin(): string
     {
@@ -44,8 +34,6 @@ class Path
 
     /**
      * Return the data path of PHP SDK for ReportingCloud Web API
-     *
-     * @return string
      */
     public static function data(): string
     {
@@ -54,8 +42,6 @@ class Path
 
     /**
      * Return the demo path of PHP SDK for ReportingCloud Web API
-     *
-     * @return string
      */
     public static function demo(): string
     {
@@ -64,8 +50,6 @@ class Path
 
     /**
      * Return the output path of PHP SDK for ReportingCloud Web API
-     *
-     * @return string
      */
     public static function output(): string
     {
@@ -74,8 +58,6 @@ class Path
 
     /**
      * Return the resources path of PHP SDK for ReportingCloud Web API
-     *
-     * @return string
      */
     public static function resource(): string
     {
@@ -84,8 +66,6 @@ class Path
 
     /**
      * Return the rest path of PHP SDK for ReportingCloud Web API
-     *
-     * @return string
      */
     public static function test(): string
     {
