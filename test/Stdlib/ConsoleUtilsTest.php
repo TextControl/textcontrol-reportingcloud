@@ -14,16 +14,9 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud\Stdlib;
 
-use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Stdlib\ConsoleUtils;
 use TextControlTest\ReportingCloud\AbstractReportingCloudTestCase;
 
-/**
- * Class ConsoleUtilsTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class ConsoleUtilsTest extends AbstractReportingCloudTestCase
 {
     public function testCheckCredentials(): void
@@ -32,11 +25,11 @@ class ConsoleUtilsTest extends AbstractReportingCloudTestCase
 
         $oldValue = getenv($key);
 
-        putenv("{$key}=");
+        putenv(sprintf('%s=', $key));
 
         self::assertFalse(ConsoleUtils::checkCredentials());
 
-        putenv("{$key}={$oldValue}");
+        putenv(sprintf('%s=%s', $key, $oldValue));
 
         self::assertTrue(ConsoleUtils::checkCredentials());
     }
@@ -48,21 +41,18 @@ class ConsoleUtilsTest extends AbstractReportingCloudTestCase
 
         $oldValue = getenv($key);
 
-        putenv("{$key}={$value}");
+        putenv(sprintf('%s=%s', $key, $value));
 
         self::assertEquals(ConsoleUtils::apiKey(), $value);
 
-        putenv("{$key}={$oldValue}");
+        putenv(sprintf('%s=%s', $key, $oldValue));
     }
 
     public function testErrorMessage(): void
     {
         $errorMessage = ConsoleUtils::errorMessage();
 
-        self::assertStringContainsString(
-            'Error: ReportingCloud API key not defined.',
-            $errorMessage
-        );
+        self::assertStringContainsString('Error: ReportingCloud API key not defined.', $errorMessage);
 
         self::assertStringContainsString(
             'For further assistance and customer service please refer to:',

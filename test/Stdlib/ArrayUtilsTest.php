@@ -14,49 +14,11 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud\Stdlib;
 
-use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Stdlib\ArrayUtils;
 use TextControlTest\ReportingCloud\AbstractReportingCloudTestCase;
 
-/**
- * Class ArrayUtilsTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class ArrayUtilsTest extends AbstractReportingCloudTestCase
 {
-    /**
-     * @return array<string, array<int, int>|string>
-     */
-    private function getTestData(): array
-    {
-        return [
-            'a' => 'a',
-            'b' => 'b',
-            'c' => 'c',
-            'd' => [
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                10,
-            ],
-        ];
-    }
-
-    private function getTestFilename(): string
-    {
-        $filename = tempnam(sys_get_temp_dir(), hash('sha256', __CLASS__));
-
-        return (string) $filename;
-    }
-
     public function testVarExportToFile(): void
     {
         $filename = $this->getTestFilename();
@@ -82,5 +44,25 @@ class ArrayUtilsTest extends AbstractReportingCloudTestCase
         self::assertStringContainsString('Do not edit.', $buffer);
 
         unlink($filename);
+    }
+
+    /**
+     * @return array<string, array<int, int>|string>
+     */
+    private function getTestData(): array
+    {
+        return [
+            'a' => 'a',
+            'b' => 'b',
+            'c' => 'c',
+            'd' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        ];
+    }
+
+    private function getTestFilename(): string
+    {
+        $filename = tempnam(sys_get_temp_dir(), hash('sha256', self::class));
+
+        return (string) $filename;
     }
 }

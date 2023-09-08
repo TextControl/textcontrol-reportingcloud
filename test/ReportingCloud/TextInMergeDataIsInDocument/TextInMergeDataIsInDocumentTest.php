@@ -19,42 +19,30 @@ use Smalot\PdfParser\Parser as PdfParser;
 use TextControl\ReportingCloud\ReportingCloud;
 use TextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
-/**
- * Class TextInMergeDataIsInDocumentTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class TextInMergeDataIsInDocumentTest extends TestCase
 {
     protected ReportingCloud $reportingCloud;
 
     protected PdfParser      $pdfParser;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->reportingCloud = new ReportingCloud([
-            'api_key' => ConsoleUtils::apiKey()
+            'api_key' => ConsoleUtils::apiKey(),
         ]);
 
         $this->pdfParser = new PdfParser();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->reportingCloud);
         unset($this->pdfParser);
     }
 
-    /**
-     * @throws \Exception
-     */
     public function testTextInMergeDataIsInDocument(): void
     {
-        $fileTypes = [
-            ReportingCloud::FILE_FORMAT_TX,
-            ReportingCloud::FILE_FORMAT_DOCX,
-        ];
+        $fileTypes = [ReportingCloud::FILE_FORMAT_TX, ReportingCloud::FILE_FORMAT_DOCX];
 
         foreach ($fileTypes as $fileType) {
 
@@ -70,7 +58,7 @@ class TextInMergeDataIsInDocumentTest extends TestCase
             $mergeDataFilename = __DIR__ . DIRECTORY_SEPARATOR . 'merge_data.json';
 
             $json      = (string) file_get_contents($mergeDataFilename);
-            $mergeData = (array)  json_decode($json, true);
+            $mergeData = (array) json_decode($json, true, 512, JSON_THROW_ON_ERROR);
 
             $arrayOfBinaryData = $this->reportingCloud->mergeDocument(
                 $mergeData,
@@ -84,7 +72,7 @@ class TextInMergeDataIsInDocumentTest extends TestCase
             file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
             self::assertTrue(is_file($destinationFilename));
-            self::assertTrue(filesize($destinationFilename) > 0);
+            self::assertTrue(0 < filesize($destinationFilename));
 
             $pdf = $this->pdfParser->parseFile($destinationFilename);
 

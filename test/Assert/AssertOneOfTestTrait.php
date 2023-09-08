@@ -14,41 +14,27 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud\Assert;
 
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\Assert\Assert;
+use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertOneOfTraitTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertOneOfTestTrait
 {
     // <editor-fold desc="Abstract methods">
+    abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
-    /**
-     * @param mixed  $condition
-     * @param string $message
-     */
-    abstract public static function assertTrue($condition, string $message = ''): void;
-
-    /**
-     * @param string $exception
-     */
     abstract public function expectException(string $exception): void;
 
-    /**
-     * @param string $message
-     */
     abstract public function expectExceptionMessage(string $message): void;
 
     // </editor-fold>
 
     public function testAssertOneOf(): void
     {
-        Assert::assertOneOf('a', ['a', 'b', 'c',]);
-        Assert::assertOneOf(1, [1, 2, 3,]);
+        Assert::assertOneOf('a', ['a', 'b', 'c']);
+        Assert::assertOneOf(1, [1, 2, 3]);
 
         self::assertTrue(true);
     }
@@ -58,6 +44,6 @@ trait AssertOneOfTestTrait
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected one of "a", "b", "c". Got "d"');
 
-        Assert::assertOneOf('d', ['a', 'b', 'c',]);
+        Assert::assertOneOf('d', ['a', 'b', 'c']);
     }
 }

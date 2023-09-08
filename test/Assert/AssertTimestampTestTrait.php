@@ -14,33 +14,19 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud\Assert;
 
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\Assert\Assert;
+use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertTimestampTestTrait
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertTimestampTestTrait
 {
     // <editor-fold desc="Abstract methods">
+    abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
-    /**
-     * @param mixed  $condition
-     * @param string $message
-     */
-    abstract public static function assertTrue($condition, string $message = ''): void;
-
-    /**
-     * @param string $exception
-     */
     abstract public function expectException(string $exception): void;
 
-    /**
-     * @param string $message
-     */
     abstract public function expectExceptionMessage(string $message): void;
 
     // </editor-fold>
@@ -50,7 +36,7 @@ trait AssertTimestampTestTrait
         Assert::assertTimestamp(0);
         Assert::assertTimestamp(1);
         Assert::assertTimestamp(1000);
-        Assert::assertTimestamp(10000000);
+        Assert::assertTimestamp(10_000_000);
         Assert::assertTimestamp(PHP_INT_MAX);
 
         self::assertTrue(true);

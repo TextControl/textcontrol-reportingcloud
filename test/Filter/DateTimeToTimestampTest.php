@@ -17,37 +17,25 @@ namespace TextControlTest\ReportingCloud\Filter;
 use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Filter\Filter;
 
-/**
- * Class DateTimeToTimestampTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class DateTimeToTimestampTest extends TestCase
 {
-    /**
-     * @var string
-     */
     protected string $defaultTimezone;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->defaultTimezone = date_default_timezone_get();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         date_default_timezone_set($this->defaultTimezone);
         unset($this->defaultTimezone);
     }
 
-    /**
-     * @param string $timeZone
-     * @param string $dateTimeString
-     * @param int    $timestamp
-     *
-     * @dataProvider \TextControlTest\ReportingCloud\Filter\TestAsset\DefaultProvider::defaultProvider
-     */
+    #[\PHPUnit\Framework\Attributes\DataProviderExternal(
+        \TextControlTest\ReportingCloud\Filter\TestAsset\DefaultProvider::class,
+        'defaultProvider'
+    )]
     public function testValid(string $timeZone, string $dateTimeString, int $timestamp): void
     {
         $identifiers = timezone_identifiers_list();

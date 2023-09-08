@@ -19,35 +19,21 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertFilenameExistsTestTrait
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertFilenameExistsTestTrait
 {
     // <editor-fold desc="Abstract methods">
+    abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
-    /**
-     * @param mixed  $condition
-     * @param string $message
-     */
-    abstract public static function assertTrue($condition, string $message = ''): void;
-
-    /**
-     * @param string $exception
-     */
     abstract public function expectException(string $exception): void;
 
-    /**
-     * @param string $message
-     */
     abstract public function expectExceptionMessage(string $message): void;
 
     // </editor-fold>
 
     public function testAssertFilenameExists(): void
     {
-        $filename = (string) tempnam(sys_get_temp_dir(), hash('sha256', __CLASS__));
+        $filename = (string) tempnam(sys_get_temp_dir(), hash('sha256', self::class));
         touch($filename);
         Assert::assertFilenameExists($filename);
         unlink($filename);

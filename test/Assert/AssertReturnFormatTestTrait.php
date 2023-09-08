@@ -20,27 +20,14 @@ use TextControl\ReportingCloud\ReportingCloud;
 
 /**
  * Trait AssertReturnFormatTestTrait
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertReturnFormatTestTrait
 {
     // <editor-fold desc="Abstract methods">
-    /**
-     * @param mixed  $condition
-     * @param string $message
-     */
-    abstract public static function assertTrue($condition, string $message = ''): void;
+    abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
-    /**
-     * @param string $exception
-     */
     abstract public function expectException(string $exception): void;
 
-    /**
-     * @param string $message
-     */
     abstract public function expectExceptionMessage(string $message): void;
 
     // </editor-fold>

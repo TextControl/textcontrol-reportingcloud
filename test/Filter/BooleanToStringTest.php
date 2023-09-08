@@ -17,12 +17,6 @@ namespace TextControlTest\ReportingCloud\Filter;
 use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Filter\Filter;
 
-/**
- * Class BooleanToStringTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class BooleanToStringTest extends TestCase
 {
     public function testTrueString(): void

@@ -14,19 +14,13 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud;
 
+use GuzzleHttp\Client;
 use TextControl\ReportingCloud\Assert\Assert;
 use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\Exception\RuntimeException;
 use TextControl\ReportingCloud\ReportingCloud;
 use TextControl\ReportingCloud\Stdlib\ConsoleUtils;
-use GuzzleHttp\Client;
 
-/**
- * Class ReportingCloudTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class ReportingCloudTest extends AbstractReportingCloudTestCase
 {
     // <editor-fold desc="Helpers tests">
@@ -133,11 +127,7 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
 
         $envVarName = ConsoleUtils::BASE_URI;
         $baseUri    = getenv($envVarName);
-        if (is_string($baseUri) && strlen($baseUri) > 0) {
-            $expected = $baseUri;
-        } else {
-            $expected = 'https://api.reporting.cloud';
-        }
+        $expected   = is_string($baseUri) && 0 < strlen($baseUri) ? $baseUri : 'https://api.reporting.cloud';
         self::assertSame($expected, $reportingCloud->getBaseUri());
         self::assertSame(120, $reportingCloud->getTimeout());
         self::assertSame('v1', $reportingCloud->getVersion());
@@ -151,7 +141,7 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
     {
         $baseUri = ConsoleUtils::baseUri();
 
-        if (strlen($baseUri) > 0) {
+        if (0 < strlen($baseUri)) {
             $reportingCloud = new ReportingCloud();
             self::assertSame($baseUri, $reportingCloud->getBaseUri());
             unset($reportingCloud);
@@ -163,13 +153,13 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
         $envVarName = ConsoleUtils::BASE_URI;
         $baseUri    = getenv($envVarName);
 
-        putenv("{$envVarName}");
+        putenv($envVarName);
 
         $reportingCloud = new ReportingCloud();
         self::assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
         unset($reportingCloud);
 
-        putenv("{$envVarName}={$baseUri}");
+        putenv(sprintf('%s=%s', $envVarName, $baseUri));
     }
 
     public function testGetBaseUriFromEnvVarWithEmptyValue(): void
@@ -177,27 +167,27 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
         $envVarName = ConsoleUtils::BASE_URI;
         $baseUri    = getenv($envVarName);
 
-        putenv("{$envVarName}=");
+        putenv(sprintf('%s=', $envVarName));
 
         $reportingCloud = new ReportingCloud();
         self::assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
         unset($reportingCloud);
 
-        putenv("{$envVarName}={$baseUri}");
+        putenv(sprintf('%s=%s', $envVarName, $baseUri));
     }
 
     public function testGetBaseUriFromEnvVarWithInvalidValue(): void
     {
         $envVarName = ConsoleUtils::BASE_URI;
         $baseUri    = getenv($envVarName);
-        if (is_string($baseUri) && strlen($baseUri) > 0) {
-            putenv("{$envVarName}=https://www.example.com");
+        if (is_string($baseUri) && 0 < strlen($baseUri)) {
+            putenv(sprintf('%s=https://www.example.com', $envVarName));
             try {
                 $reportingCloud = new ReportingCloud();
-            } catch (InvalidArgumentException $e) {
-                putenv("{$envVarName}={$baseUri}");
+            } catch (InvalidArgumentException $invalidArgumentException) {
+                putenv(sprintf('%s=%s', $envVarName, $baseUri));
                 $expected = 'Expected base URI to end in "api.reporting.cloud". Got "https://www.example.com"';
-                self::assertSame($expected, $e->getMessage());
+                self::assertSame($expected, $invalidArgumentException->getMessage());
             }
             if (isset($reportingCloud)) {
                 unset($reportingCloud);
@@ -670,13 +660,7 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->reportingCloud->getTemplateThumbnails(
-            'sample_invoice.tx',
-            100,
-            1,
-            1,
-            'XXX'
-        );
+        $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, 1, 1, 'XXX');
     }
 
     // </editor-fold>
@@ -794,10 +778,7 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
 
         self::assertFileExists($documentFilename);
 
-        $response = $this->reportingCloud->convertDocument(
-            $documentFilename,
-            ReportingCloud::FILE_FORMAT_PDF
-        );
+        $response = $this->reportingCloud->convertDocument($documentFilename, ReportingCloud::FILE_FORMAT_PDF);
 
         self::assertGreaterThanOrEqual(1024, mb_strlen($response));
     }
@@ -808,10 +789,7 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
 
         self::assertFileExists($documentFilename);
 
-        $response = $this->reportingCloud->convertDocument(
-            $documentFilename,
-            ReportingCloud::FILE_FORMAT_TXT
-        );
+        $response = $this->reportingCloud->convertDocument($documentFilename, ReportingCloud::FILE_FORMAT_TXT);
 
         self::assertNotFalse($response);
         self::assertEquals("A Test File\r\n", $response);
@@ -821,40 +799,28 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->reportingCloud->convertDocument(
-            '/invalid/path/document.xxx',
-            ReportingCloud::FILE_FORMAT_PDF
-        );
+        $this->reportingCloud->convertDocument('/invalid/path/document.xxx', ReportingCloud::FILE_FORMAT_PDF);
     }
 
     public function testConvertDocumentInvalidDocumentFilenameNoExtension(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->reportingCloud->convertDocument(
-            '/invalid/path/document',
-            ReportingCloud::FILE_FORMAT_PDF
-        );
+        $this->reportingCloud->convertDocument('/invalid/path/document', ReportingCloud::FILE_FORMAT_PDF);
     }
 
     public function testConvertDocumentInvalidDocumentFilenameNoFile(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->reportingCloud->convertDocument(
-            '/invalid/path/document/',
-            ReportingCloud::FILE_FORMAT_PDF
-        );
+        $this->reportingCloud->convertDocument('/invalid/path/document/', ReportingCloud::FILE_FORMAT_PDF);
     }
 
     public function testConvertDocumentInvalidDocumentFilename(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->reportingCloud->convertDocument(
-            '/invalid/path/document.doc',
-            ReportingCloud::FILE_FORMAT_PDF
-        );
+        $this->reportingCloud->convertDocument('/invalid/path/document.doc', ReportingCloud::FILE_FORMAT_PDF);
     }
 
     public function testConvertDocumentInvalidReturnFormat(): void
@@ -1397,7 +1363,7 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
 
         self::assertArrayHasKey(0, $response);
 
-        self::assertTrue(mb_strlen($response[0]) > 2048);
+        self::assertTrue(2048 < mb_strlen($response[0]));
     }
 
     // </editor-fold>
@@ -1410,9 +1376,7 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
 
         self::assertFileExists($testDocumentFilename);
 
-        $response = $this->reportingCloud->getTrackedChanges(
-            $testDocumentFilename
-        );
+        $response = $this->reportingCloud->getTrackedChanges($testDocumentFilename);
 
         self::assertArrayHasKey(0, $response);
 
@@ -1440,11 +1404,7 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
 
         self::assertFileExists($testDocumentFilename);
 
-        $response = $this->reportingCloud->removeTrackedChange(
-            $testDocumentFilename,
-            1,
-            true
-        );
+        $response = $this->reportingCloud->removeTrackedChange($testDocumentFilename, 1, true);
 
         self::assertArrayHasKey('document', $response);
         self::assertArrayHasKey('removed', $response);
@@ -1473,7 +1433,7 @@ class ReportingCloudTest extends AbstractReportingCloudTestCase
         $this->deleteAllApiKeys();
 
         // only 10 API keys are allowed
-        for ($i = 1; $i <= 11; $i++) {
+        for ($i = 1; 11 >= $i; ++$i) {
             self::assertNotEmpty($this->reportingCloud->createApiKey());
         }
     }

@@ -16,15 +16,8 @@ namespace TextControlTest\ReportingCloud\Assert;
 
 use PHPUnit\Framework\TestCase;
 use stdClass;
-use TextControl\ReportingCloud\Assert\AssertRemoveTrait;
 use TextControlTest\ReportingCloud\Assert\TestAsset\ConcreteAssert as Assert;
 
-/**
- * Class AssertTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class AssertTest extends TestCase
 {
     use AssertApiKeyTestTrait;
@@ -81,7 +74,7 @@ class AssertTest extends TestCase
     {
         $stdClass = new stdClass();
 
-        $expected = get_class($stdClass);
+        $expected = $stdClass::class;
         $actual   = Assert::publicValueToString($stdClass);
 
         self::assertEquals($expected, $actual);
@@ -89,15 +82,14 @@ class AssertTest extends TestCase
 
     public function testValueToStringObjectWithToString(): void
     {
-        $stdClass = new class extends stdClass
-        {
+        $stdClass = new class() extends stdClass {
             public function __toString(): string
             {
                 return 'abc';
             }
         };
 
-        $expected = sprintf('%1$s: %2$s', get_class($stdClass), Assert::publicValueToString($stdClass->__toString()));
+        $expected = sprintf('%1$s: %2$s', $stdClass::class, Assert::publicValueToString($stdClass->__toString()));
         $actual   = Assert::publicValueToString($stdClass);
 
         self::assertEquals($expected, $actual);

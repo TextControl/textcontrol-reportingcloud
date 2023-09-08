@@ -14,16 +14,9 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud\Stdlib;
 
-use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Stdlib\Path;
 use TextControlTest\ReportingCloud\AbstractReportingCloudTestCase;
 
-/**
- * Class PathTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class PathTest extends AbstractReportingCloudTestCase
 {
     public function testRoot(): void
@@ -35,14 +28,7 @@ class PathTest extends AbstractReportingCloudTestCase
 
     public function testOthers(): void
     {
-        $paths = [
-            'bin',
-            'data',
-            'demo',
-            'output',
-            'resource',
-            'test',
-        ];
+        $paths = ['bin', 'data', 'demo', 'output', 'resource', 'test'];
 
         foreach ($paths as $path) {
             $expected = sprintf('%s/%s', Path::root(), $path);

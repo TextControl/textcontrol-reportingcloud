@@ -14,26 +14,22 @@ declare(strict_types=1);
 
 namespace TextControlTest\ReportingCloud\Stdlib;
 
-use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Stdlib\FileUtils;
 use TextControlTest\ReportingCloud\AbstractReportingCloudTestCase;
 
-/**
- * Class FileUtilsTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class FileUtilsTest extends AbstractReportingCloudTestCase
 {
-    const BINARY_PATTERN = '~[^\x20-\x7E\t\r\n]~';
+    /**
+     * @var string
+     */
+    final public const BINARY_PATTERN = '~[^\x20-\x7E\t\r\n]~';
 
     public function testReadBase64EncodeFalse(): void
     {
         $sourceFilename = $this->getTestDocumentFilename();
 
         $binaryData = FileUtils::read($sourceFilename);
-        $valid      = (preg_match(self::BINARY_PATTERN, $binaryData) > 0);
+        $valid      = (0 < preg_match(self::BINARY_PATTERN, $binaryData));
         self::assertTrue($valid);
     }
 
@@ -43,11 +39,7 @@ class FileUtilsTest extends AbstractReportingCloudTestCase
 
         $base64EncodedData = FileUtils::read($sourceFilename, true);
         $binaryData        = base64_decode($base64EncodedData, true);
-        if (is_string($binaryData) && strlen($binaryData) > 0) {
-            $valid = true;
-        } else {
-            $valid = false;
-        }
+        $valid = is_string($binaryData) && 0 < strlen($binaryData);
         self::assertTrue($valid);
     }
 
@@ -64,7 +56,7 @@ class FileUtilsTest extends AbstractReportingCloudTestCase
         self::assertTrue($valid);
 
         $binaryData = (string) file_get_contents($destinationFilename);
-        $valid      = (preg_match(self::BINARY_PATTERN, $binaryData) > 0);
+        $valid      = (0 < preg_match(self::BINARY_PATTERN, $binaryData));
         self::assertTrue($valid);
     }
 
@@ -81,7 +73,7 @@ class FileUtilsTest extends AbstractReportingCloudTestCase
         self::assertTrue($valid);
 
         $binaryData = (string) file_get_contents($destinationFilename);
-        $valid      = (preg_match(self::BINARY_PATTERN, $binaryData) > 0);
+        $valid      = (0 < preg_match(self::BINARY_PATTERN, $binaryData));
         self::assertTrue($valid);
     }
 }

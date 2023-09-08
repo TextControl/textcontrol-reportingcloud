@@ -17,22 +17,16 @@ namespace TextControlTest\ReportingCloud\PropertyMap;
 use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\PropertyMap\AccountSettings as PropertyMap;
 
-/**
- * Class AccountSettingsTest
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class AccountSettingsTest extends TestCase
 {
     protected PropertyMap $propertyMap;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->propertyMap = new PropertyMap();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->propertyMap);
     }

@@ -19,28 +19,14 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertDocumentExtensionTestTrait
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertDocumentThumbnailExtensionTestTrait
 {
     // <editor-fold desc="Abstract methods">
+    abstract public static function assertTrue(mixed $condition, string $message = ''): void;
 
-    /**
-     * @param mixed  $condition
-     * @param string $message
-     */
-    abstract public static function assertTrue($condition, string $message = ''): void;
-
-    /**
-     * @param string $exception
-     */
     abstract public function expectException(string $exception): void;
 
-    /**
-     * @param string $message
-     */
     abstract public function expectExceptionMessage(string $message): void;
 
     // </editor-fold>
@@ -71,8 +57,9 @@ trait AssertDocumentThumbnailExtensionTestTrait
     public function testAssertDocumentThumbnailExtensionInvalid(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('"document.xxx" contains an unsupported document '
-                                      . 'thumbnail format file extension');
+        $this->expectExceptionMessage(
+            '"document.xxx" contains an unsupported document thumbnail format file extension'
+        );
 
         Assert::assertDocumentThumbnailExtension('document.xxx');
     }

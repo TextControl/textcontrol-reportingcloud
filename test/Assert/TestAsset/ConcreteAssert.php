@@ -19,9 +19,6 @@ use TextControl\ReportingCloud\Assert\ValueToStringTrait;
 
 /**
  * Class ConcreteAssert (for testing only)
- *
- * @package TextControlTest\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 class ConcreteAssert extends AbstractAssert
 {
@@ -29,12 +26,8 @@ class ConcreteAssert extends AbstractAssert
 
     /**
      * Convert value to string (public version for testing)
-     *
-     * @param mixed $value
-     *
-     * @return string
      */
-    public static function publicValueToString($value): string
+    public static function publicValueToString(mixed $value): string
     {
         return self::valueToString($value);
     }

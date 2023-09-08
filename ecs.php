@@ -32,6 +32,7 @@ return static function (ECSConfig $ecsConfig): void {
             sprintf('%s/bin', __DIR__),
             sprintf('%s/data', __DIR__),
             sprintf('%s/demo', __DIR__),
+            sprintf('%s/test', __DIR__),
             sprintf('%s/ecs.php', __DIR__),
             sprintf('%s/rector.php', __DIR__),
         ]
