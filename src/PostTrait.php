@@ -31,8 +31,6 @@ use TextControl\ReportingCloud\Stdlib\FileUtils;
  */
 trait PostTrait
 {
-    // </editor-fold>
-    // <editor-fold desc="Methods">
     /**
      * Upload a base64 encoded template to template storage
      *
@@ -361,8 +359,6 @@ trait PostTrait
 
         return $ret;
     }
-
-    // <editor-fold desc="Abstract methods">
 
     /**
      * Construct URI with version number

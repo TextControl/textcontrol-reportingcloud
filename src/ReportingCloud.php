@@ -24,27 +24,28 @@ class ReportingCloud extends AbstractReportingCloud
 
     public function __construct(array $options = [])
     {
-        if ([] !== $options) {
+        if ([] === $options) {
+            return;
+        }
 
-            $methods = [
-                // Credentials
-                'api_key'  => 'setApiKey',
-                // Credentials (deprecated, use 'api_key' only)
-                'username' => 'setUsername',
-                'password' => 'setPassword',
-                // Options
-                'base_uri' => 'setBaseUri',
-                'debug'    => 'setDebug',
-                'test'     => 'setTest',
-                'timeout'  => 'setTimeout',
-                'version'  => 'setVersion',
-            ];
+        $methods = [
+            // Credentials
+            'api_key'  => 'setApiKey',
+            // Credentials (deprecated, use 'api_key' only)
+            'username' => 'setUsername',
+            'password' => 'setPassword',
+            // Options
+            'base_uri' => 'setBaseUri',
+            'debug'    => 'setDebug',
+            'test'     => 'setTest',
+            'timeout'  => 'setTimeout',
+            'version'  => 'setVersion',
+        ];
 
-            foreach ($methods as $key => $method) {
-                if (array_key_exists($key, $options)) {
-                    // @phpstan-ignore-next-line
-                    $this->{$method}($options[$key]);
-                }
+        foreach ($methods as $key => $method) {
+            if (array_key_exists($key, $options)) {
+                // @phpstan-ignore-next-line
+                $this->{$method}($options[$key]);
             }
         }
     }
