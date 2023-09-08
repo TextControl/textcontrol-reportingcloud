@@ -28,11 +28,11 @@ $destinationFilename = sprintf('%s/%s', Path::output(), $templateName);
 // Uploaded, if it is not
 
 if (!$reportingCloud->templateExists($templateName)) {
-    ConsoleUtils::writeLn('"%s" is not in template storage', $templateName);
+    ConsoleUtils::writeLn('"%s" is not in template storage', [$templateName]);
     if ($reportingCloud->uploadTemplate($sourceFilename)) {
-        ConsoleUtils::writeLn('Uploaded "%s".', $sourceFilename);
+        ConsoleUtils::writeLn('Uploaded "%s".', [$sourceFilename]);
     } else {
-        ConsoleUtils::writeLn('Error uploading "%s".', $sourceFilename);
+        ConsoleUtils::writeLn('Error uploading "%s".', [$sourceFilename]);
     }
 }
 
@@ -41,7 +41,7 @@ if (!$reportingCloud->templateExists($templateName)) {
 
 $pageCount = $reportingCloud->getTemplatePageCount($templateName);
 
-ConsoleUtils::writeLn('"%s" contains %d page%s.', $templateName);
+ConsoleUtils::writeLn('"%s" contains %d page%s.', [$templateName]);
 
 
 // Download a template from template storage
@@ -49,12 +49,12 @@ ConsoleUtils::writeLn('"%s" contains %d page%s.', $templateName);
 $binaryData = $reportingCloud->downloadTemplate($templateName);
 
 if (0 < strlen($binaryData)) {
-    ConsoleUtils::writeLn('"%s" was downloaded.', $templateName);
+    ConsoleUtils::writeLn('"%s" was downloaded.', [$templateName]);
     // Write the document's binary data to disk
     FileUtils::write($destinationFilename, $binaryData);
-    ConsoleUtils::writeLn('"%s" was written to "%s".', $templateName);
+    ConsoleUtils::writeLn('"%s" was written to "%s".', [$templateName]);
 } else {
-    ConsoleUtils::writeLn('Error downloading "%s".', $templateName);
+    ConsoleUtils::writeLn('Error downloading "%s".', [$templateName]);
 }
 
 
@@ -62,7 +62,7 @@ if (0 < strlen($binaryData)) {
 
 $templateCount = $reportingCloud->getTemplateCount();
 
-ConsoleUtils::writeLn('There are %d template%s in template storage.', $templateCount);
+ConsoleUtils::writeLn('There are %d template%s in template storage.', [$templateCount]);
 
 
 // Get an array of all templates in template storage
@@ -82,16 +82,16 @@ foreach ($reportingCloud->getTemplateList() as $record) {
     $templateName      = $record['template_name'];
     $modifiedFormatted = date('r', $record['modified']);    // modified is a unix timestamp
 
-    ConsoleUtils::writeLn('- %s', $templateName);
-    ConsoleUtils::writeLn('- %s', $record['modified']);
-    ConsoleUtils::writeLn('- %s', $modifiedFormatted);
+    ConsoleUtils::writeLn('- %s', [$templateName]);
+    ConsoleUtils::writeLn('- %s', [$record['modified']]);
+    ConsoleUtils::writeLn('- %s', [$modifiedFormatted]);
 }
 
 
 // Delete a template in template storage
 
 if ($reportingCloud->deleteTemplate($templateName)) {
-    ConsoleUtils::writeLn('"%s" was deleted.', $templateName);
+    ConsoleUtils::writeLn('"%s" was deleted.', [$templateName]);
 } else {
-    ConsoleUtils::writeLn('Error deleting "%s".', $templateName);
+    ConsoleUtils::writeLn('Error deleting "%s".', [$templateName]);
 }

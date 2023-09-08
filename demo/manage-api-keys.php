@@ -18,10 +18,10 @@ foreach ($reportingCloud->getApiKeys() as $apiKey) {
     assert(isset($apiKey['key']));
     assert(is_string($apiKey['key']));
     if ($apiKey['key'] === $reportingCloud->getApiKey()) {
-        ConsoleUtils::writeLn('Keeping API key "%s" (in use).', $apiKey['key']);
+        ConsoleUtils::writeLn('Keeping API key "%s" (in use).', [$apiKey['key']]);
         continue;
     }
-    ConsoleUtils::writeLn('Deleting API key "%s".', $apiKey['key']);
+    ConsoleUtils::writeLn('Deleting API key "%s".', [$apiKey['key']]);
     $reportingCloud->deleteApiKey($apiKey['key']);
 }
 

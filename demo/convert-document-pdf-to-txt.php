@@ -29,4 +29,4 @@ FileUtils::write($destinationFilename, $binaryData);
 
 // Output to console the location of the generated document
 
-ConsoleUtils::writeLn('"%s" was converted and written to "%s".', $sourceFilename);
+ConsoleUtils::writeLn('"%s" was converted and written to "%s".', [$sourceFilename]);

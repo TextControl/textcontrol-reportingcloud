@@ -15,5 +15,5 @@ $reportingCloud = new ReportingCloud([
 // Iterate over the array of fonts
 
 foreach ($reportingCloud->getFontList() as $font) {
-    ConsoleUtils::writeLn('- %s', $font);
+    ConsoleUtils::writeLn('- %s', [$font]);
 }

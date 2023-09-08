@@ -58,4 +58,4 @@ FileUtils::write($destinationFilename, $binaryData);
 
 // Output to console the location of the generated document
 
-ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
+ConsoleUtils::writeLn('Written to "%s".', [$destinationFilename]);

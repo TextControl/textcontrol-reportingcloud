@@ -50,4 +50,4 @@ FileUtils::write($destinationFilename, $arrayOfBinaryData[0]);
 
 // Output to console the location of the generated document
 
-ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
+ConsoleUtils::writeLn('Written to "%s".', [$destinationFilename]);

@@ -124,7 +124,7 @@ FileUtils::write($destinationFilename, $arrayOfBinaryData[0]);
 
 // Output to console the location of the generated document
 
-ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
+ConsoleUtils::writeLn('Written to "%s".', [$destinationFilename]);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -148,7 +148,7 @@ FileUtils::write($destinationFilename, $arrayOfBinaryData[0]);
 
 // Output to console the location of the generated document
 
-ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
+ConsoleUtils::writeLn('Written to "%s".', [$destinationFilename]);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -192,7 +192,7 @@ FileUtils::write($destinationFilename, $arrayOfBinaryData[0]);
 
 // Output to console the location of the generated document
 
-ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
+ConsoleUtils::writeLn('Written to "%s".', [$destinationFilename]);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -217,7 +217,7 @@ FileUtils::write($destinationFilename, $arrayOfBinaryData[0]);
 
 // Output to console the location of the generated document
 
-ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
+ConsoleUtils::writeLn('Written to "%s".', [$destinationFilename]);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -252,7 +252,7 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     // Output to console the location of the generated document
 
-    ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
+    ConsoleUtils::writeLn('Written to "%s".', [$destinationFilename]);
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

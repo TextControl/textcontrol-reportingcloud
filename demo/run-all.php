@@ -44,7 +44,7 @@ $fileInfos = $getDemos();
 
 foreach ($fileInfos as $fileInfo) {
 
-    ConsoleUtils::writeLn('%d/%d) Executing "%s"...', $counter);
+    ConsoleUtils::writeLn('%d/%d) Executing "%s"...', [$counter]);
     ConsoleUtils::writeLn();
     $command = sprintf('%s %s', escapeshellarg(PHP_BINARY), escapeshellarg($fileInfo->getPathname()));
     passthru($command);
