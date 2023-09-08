@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud\Exception;
 
 /**
  * RuntimeException
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 class RuntimeException extends \RuntimeException implements ExceptionInterface
 {

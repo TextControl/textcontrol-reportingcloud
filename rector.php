@@ -23,7 +23,7 @@ return static function (RectorConfig $rectorConfig): void {
             sprintf('%s/demo', __DIR__),
             sprintf('%s/test', __DIR__),
             sprintf('%s/src/Assert', __DIR__),
-            #sprintf('%s/src/Exception', __DIR__),
+            sprintf('%s/src/Exception', __DIR__),
             sprintf('%s/src/Filter', __DIR__),
             sprintf('%s/src/PropertyMap', __DIR__),
             #sprintf('%s/src/Stdlib', __DIR__),

@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud\Exception;
 
 /**
  * InvalidArgumentException
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {

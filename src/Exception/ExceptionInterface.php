@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud\Exception;
 
 /**
  * ExceptionInterface
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 interface ExceptionInterface
 {
