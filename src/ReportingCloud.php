@@ -14,9 +14,7 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud;
 
-/**
- * Class ReportingCloud
- */
+
 class ReportingCloud extends AbstractReportingCloud
 {
     use BuildTrait;

@@ -14,64 +14,20 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud;
 
+use JsonException;
 use Ctw\Http\HttpMethod;
 use Ctw\Http\HttpStatus;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TextControl\ReportingCloud\Exception\RuntimeException;
 use TextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 
 /**
  * Trait PutTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait PutTrait
 {
-    // <editor-fold desc="Abstract methods">
-
-    /**
-     * Construct URI with version number
-     *
-     * @param string $uri URI
-     *
-     * @return string
-     */
-    abstract protected function uri(string $uri): string;
-
-    /**
-     * Request the URI with options
-     *
-     * @param string $method  HTTP method
-     * @param string $uri     URI
-     * @param array  $options Options
-     *
-     * @return ResponseInterface
-     * @throws RuntimeException
-     */
-    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
-
-    /**
-     * Using the passed propertyMap, recursively build array
-     *
-     * @param array       $array       Array
-     * @param PropertyMap $propertyMap PropertyMap
-     *
-     * @return array
-     */
-    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array;
-
-    // </editor-fold>
-
-    // <editor-fold desc="Methods">
-
     /**
      * Create an API key
-     *
-     * @return string
-     * @throws InvalidArgumentException
      */
     public function createApiKey(): string
     {
@@ -79,22 +35,39 @@ trait PutTrait
     }
 
     /**
+     * Construct URI with version number
+     *
+     * @param string $uri URI
+     */
+    abstract protected function uri(string $uri): string;
+
+    /**
+     * Request the URI with options
+     *
+     * @param string $method HTTP method
+     * @param string $uri URI
+     * @param array  $options Options
+     */
+    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
+
+    /**
+     * Using the passed propertyMap, recursively build array
+     *
+     * @param array       $array Array
+     * @param PropertyMap $propertyMap PropertyMap
+     */
+    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array;
+
+    /**
      * Execute a PUT request via REST client
      *
-     * @param string  $uri        URI
-     * @param array[] $query      Query
-     * @param mixed   $json       JSON
+     * @param string  $uri URI
+     * @param array[] $query Query
+     * @param mixed   $json JSON
      * @param int     $statusCode Required HTTP status code for response
-     *
-     * @return string
      */
-    private function put(
-        string $uri,
-        array $query = [],
-        mixed $json = '',
-        int $statusCode = 0
-    ): string {
-
+    private function put(string $uri, array $query = [], mixed $json = '', int $statusCode = 0): string
+    {
         $ret = '';
 
         $options = [
@@ -105,12 +78,13 @@ trait PutTrait
         $response = $this->request(HttpMethod::METHOD_PUT, $this->uri($uri), $options);
 
         if ($statusCode === $response->getStatusCode()) {
-            $ret = json_decode($response->getBody()->getContents(), true);
-            assert(is_string($ret));
+            try {
+                $ret = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+                assert(is_string($ret));
+            } catch (JsonException) {
+            }
         }
 
         return $ret;
     }
-
-    // </editor-fold>
 }
