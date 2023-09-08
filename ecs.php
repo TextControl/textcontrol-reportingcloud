@@ -40,6 +40,7 @@ return static function (ECSConfig $ecsConfig): void {
             sprintf('%s/src/Stdlib', __DIR__),
             sprintf('%s/src/BuildTrait.php', __DIR__),
             sprintf('%s/src/DeleteTrait.php', __DIR__),
+            sprintf('%s/src/AbstractReportingCloud.php', __DIR__),
             sprintf('%s/ecs.php', __DIR__),
             sprintf('%s/rector.php', __DIR__),
         ]

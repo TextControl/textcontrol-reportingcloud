@@ -26,14 +26,10 @@ use TextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 /**
  * Abstract ReportingCloud
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 abstract class AbstractReportingCloud
 {
     // <editor-fold desc="Constants (default values)">
-
     /**
      * Default date/time format of backend is 'ISO 8601'
      *
@@ -45,202 +41,181 @@ abstract class AbstractReportingCloud
      * Backend uses the 'P' variant
      *
      * @const DEFAULT_DATE_FORMAT
+     * @var string
      */
-    public const DEFAULT_DATE_FORMAT = 'Y-m-d\TH:i:sP';
+    final public const DEFAULT_DATE_FORMAT = 'Y-m-d\TH:i:sP';
 
     /**
      * Default time zone of backend
      *
      * @const DEFAULT_TIME_ZONE
+     * @var string
      */
-    public const DEFAULT_TIME_ZONE = 'UTC';
+    final public const DEFAULT_TIME_ZONE = 'UTC';
 
     /**
      * Default base URI of backend
      *
      * @const DEFAULT_BASE_URI
+     * @var string
      */
-    public const DEFAULT_BASE_URI = 'https://api.reporting.cloud';
-
-    /**
-     * Default debug flag of REST client
-     *
-     * @const DEFAULT_DEBUG
-     */
-    protected const DEFAULT_DEBUG = false;
-
-    /**
-     * Default test flag of backend
-     *
-     * @const DEFAULT_TEST
-     */
-    protected const DEFAULT_TEST = false;
-
-    /**
-     * Default timeout of backend in seconds
-     *
-     * @const DEFAULT_TIMEOUT
-     */
-    protected const DEFAULT_TIMEOUT = 120;
-
-    /**
-     * Default version string of backend
-     *
-     * @const DEFAULT_VERSION
-     */
-    protected const DEFAULT_VERSION = 'v1';
+    final public const DEFAULT_BASE_URI = 'https://api.reporting.cloud';
 
     // </editor-fold>
-
     // <editor-fold desc="Constants (document dividers)">
-
     /**
      * Document divider - none
+     * @var int
      */
-    public const DOCUMENT_DIVIDER_NONE = 1;
+    final public const DOCUMENT_DIVIDER_NONE = 1;
 
     /**
      * Document divider - new paragraph
+     * @var int
      */
-    public const DOCUMENT_DIVIDER_NEW_PARAGRAPH = 2;
+    final public const DOCUMENT_DIVIDER_NEW_PARAGRAPH = 2;
 
     /**
      * Document divider - new section
+     * @var int
      */
-    public const DOCUMENT_DIVIDER_NEW_SECTION = 3;
+    final public const DOCUMENT_DIVIDER_NEW_SECTION = 3;
 
     // </editor-fold>
-
     // <editor-fold desc="Constants (file formats)">
-
     /**
      * DOC file format
+     * @var string
      */
-    public const FILE_FORMAT_DOC = 'DOC';
+    final public const FILE_FORMAT_DOC = 'DOC';
 
     /**
      * DOCX file format
+     * @var string
      */
-    public const FILE_FORMAT_DOCX = 'DOCX';
+    final public const FILE_FORMAT_DOCX = 'DOCX';
 
     /**
      * HTML file format
+     * @var string
      */
-    public const FILE_FORMAT_HTML = 'HTML';
+    final public const FILE_FORMAT_HTML = 'HTML';
 
     /**
      * PDF file format
+     * @var string
      */
-    public const FILE_FORMAT_PDF = 'PDF';
+    final public const FILE_FORMAT_PDF = 'PDF';
 
     /**
      * PDF/A file format
+     * @var string
      */
-    public const FILE_FORMAT_PDFA = 'PDFA';
+    final public const FILE_FORMAT_PDFA = 'PDFA';
 
     /**
      * RTF file format
+     * @var string
      */
-    public const FILE_FORMAT_RTF = 'RTF';
+    final public const FILE_FORMAT_RTF = 'RTF';
 
     /**
      * TX (Text Control) file format
+     * @var string
      */
-    public const FILE_FORMAT_TX = 'TX';
+    final public const FILE_FORMAT_TX = 'TX';
 
     /**
      * Pure text file format
+     * @var string
      */
-    public const FILE_FORMAT_TXT = 'TXT';
+    final public const FILE_FORMAT_TXT = 'TXT';
 
     /**
      * Bitmap file format
+     * @var string
      */
-    public const FILE_FORMAT_BMP = 'BMP';
+    final public const FILE_FORMAT_BMP = 'BMP';
 
     /**
      * GIF file format
+     * @var string
      */
-    public const FILE_FORMAT_GIF = 'GIF';
+    final public const FILE_FORMAT_GIF = 'GIF';
 
     /**
      * JPEG file format
+     * @var string
      */
-    public const FILE_FORMAT_JPG = 'JPG';
+    final public const FILE_FORMAT_JPG = 'JPG';
 
     /**
      * PNG file format
+     * @var string
      */
-    public const FILE_FORMAT_PNG = 'PNG';
+    final public const FILE_FORMAT_PNG = 'PNG';
 
     /**
      * XLSX file format
+     * @var string
      */
-    public const FILE_FORMAT_XLSX = 'XLSX';
+    final public const FILE_FORMAT_XLSX = 'XLSX';
 
     // </editor-fold>
-
     // <editor-fold desc="Constants (tracked changes)">
-
     /**
      * InsertedText tracked change
+     * @var int
      */
-    public const TRACKED_CHANGE_INSERTED_TEXT = 4096;
+    final public const TRACKED_CHANGE_INSERTED_TEXT = 4096;
 
     /**
      * DeletedText tracked change
+     * @var int
      */
-    public const TRACKED_CHANGE_DELETED_TEXT = 8192;
+    final public const TRACKED_CHANGE_DELETED_TEXT = 8192;
 
     // </editor-fold>
-
     // <editor-fold desc="Constants (highlight mode)">
-
     /**
      * Never highlight mode
+     * @var int
      */
-    public const HIGHLIGHT_MODE_NEVER     = 1;
+    final public const HIGHLIGHT_MODE_NEVER = 1;
 
     /**
      * Activated highlight mode
+     * @var int
      */
-    public const HIGHLIGHT_MODE_ACTIVATED = 2;
+    final public const HIGHLIGHT_MODE_ACTIVATED = 2;
 
     /**
      * Always highlight mode
+     * @var int
      */
-    public const HIGHLIGHT_MODE_ALWAYS    = 3;
+    final public const HIGHLIGHT_MODE_ALWAYS = 3;
 
     // </editor-fold>
-
     // <editor-fold desc="Constants (file format collections)">
-
     /**
      * Image file formats
+     * @var string[]
      */
-    public const FILE_FORMATS_IMAGE
-        = [
-            self::FILE_FORMAT_BMP,
-            self::FILE_FORMAT_GIF,
-            self::FILE_FORMAT_JPG,
-            self::FILE_FORMAT_PNG,
-        ];
+    final public const FILE_FORMATS_IMAGE
+        = [self::FILE_FORMAT_BMP, self::FILE_FORMAT_GIF, self::FILE_FORMAT_JPG, self::FILE_FORMAT_PNG];
 
     /**
      * Template file formats
+     * @var string[]
      */
-    public const FILE_FORMATS_TEMPLATE
-        = [
-            self::FILE_FORMAT_DOC,
-            self::FILE_FORMAT_DOCX,
-            self::FILE_FORMAT_RTF,
-            self::FILE_FORMAT_TX,
-        ];
+    final public const FILE_FORMATS_TEMPLATE
+        = [self::FILE_FORMAT_DOC, self::FILE_FORMAT_DOCX, self::FILE_FORMAT_RTF, self::FILE_FORMAT_TX];
 
     /**
      * Document file formats
+     * @var string[]
      */
-    public const FILE_FORMATS_DOCUMENT
+    final public const FILE_FORMATS_DOCUMENT
         = [
             self::FILE_FORMAT_DOC,
             self::FILE_FORMAT_DOCX,
@@ -252,8 +227,9 @@ abstract class AbstractReportingCloud
 
     /**
      * Return file formats
+     * @var string[]
      */
-    public const FILE_FORMATS_RETURN
+    final public const FILE_FORMATS_RETURN
         = [
             self::FILE_FORMAT_DOC,
             self::FILE_FORMAT_DOCX,
@@ -265,21 +241,48 @@ abstract class AbstractReportingCloud
             self::FILE_FORMAT_TXT,
         ];
 
-    // </editor-fold>
-
-    // <editor-fold desc="Properties">
+    /**
+     * Default debug flag of REST client
+     *
+     * @const DEFAULT_DEBUG
+     * @var bool
+     */
+    protected const DEFAULT_DEBUG = false;
 
     /**
-     * Backend API key
+     * Default test flag of backend
      *
+     * @const DEFAULT_TEST
+     * @var bool
+     */
+    protected const DEFAULT_TEST = false;
+
+    /**
+     * Default timeout of backend in seconds
+     *
+     * @const DEFAULT_TIMEOUT
+     * @var int
+     */
+    protected const DEFAULT_TIMEOUT = 120;
+
+    /**
+     * Default version string of backend
+     *
+     * @const DEFAULT_VERSION
      * @var string
+     */
+    protected const DEFAULT_VERSION = 'v1';
+
+    // </editor-fold>
+    // <editor-fold desc="Properties">
+    /**
+     * Backend API key
      */
     private string $apiKey;
 
     /**
      * Backend username
      *
-     * @var string
      * @deprecated Use $this->apiKey instead
      */
     private string $username;
@@ -287,62 +290,45 @@ abstract class AbstractReportingCloud
     /**
      * Backend password
      *
-     * @var string
      * @deprecated Use $this->apiKey instead
      */
     private string $password;
 
     /**
      * Backend base URI
-     *
-     * @var string
      */
     private string $baseUri;
 
     /**
      * Debug flag of REST client
-     *
-     * @var bool
      */
-    private bool $debug;
+    private bool $debug = false;
 
     /**
      * When true, API call does not count against quota
      * "TEST MODE" watermark is added to document
-     *
-     * @var bool
      */
-    private bool $test;
+    private bool $test = false;
 
     /**
      * Backend timeout in seconds
-     *
-     * @var int
      */
     private int $timeout;
 
     /**
      * Backend version string
-     *
-     * @var string
      */
     private string $version;
 
     /**
      * REST client to backend
-     *
-     * @var Client
      */
     private Client $client;
 
     // </editor-fold>
-
     // <editor-fold desc="Methods">
-
     /**
      * Return the API key
-     *
-     * @return string
      */
     public function getApiKey(): string
     {
@@ -355,10 +341,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Set the API key
-     *
-     * @param string $apiKey
-     *
-     * @return self
      */
     public function setApiKey(string $apiKey): self
     {
@@ -370,7 +352,6 @@ abstract class AbstractReportingCloud
     /**
      * Return the username
      *
-     * @return string
      * @deprecated Use $this->getApiKey(): string instead
      */
     public function getUsername(): string
@@ -385,9 +366,6 @@ abstract class AbstractReportingCloud
     /**
      * Set the username
      *
-     * @param string $username
-     *
-     * @return self
      * @deprecated Use $this->setApiKey(string $apiKey): self instead
      */
     public function setUsername(string $username): self
@@ -400,7 +378,6 @@ abstract class AbstractReportingCloud
     /**
      * Return the password
      *
-     * @return string
      * @deprecated Use $this->getApiKey() instead
      */
     public function getPassword(): string
@@ -415,9 +392,6 @@ abstract class AbstractReportingCloud
     /**
      * Set the password
      *
-     * @param string $password
-     *
-     * @return self
      * @deprecated Use $this->setApiKey(string $apiKey): self instead
      */
     public function setPassword(string $password): self
@@ -429,14 +403,12 @@ abstract class AbstractReportingCloud
 
     /**
      * Return the base URI of the backend web service
-     *
-     * @return string
      */
     public function getBaseUri(): string
     {
         if (!isset($this->baseUri)) {
             $baseUri = ConsoleUtils::baseUri();
-            if (0 === strlen($baseUri)) {
+            if ('' === $baseUri) {
                 $baseUri = self::DEFAULT_BASE_URI;
             }
             Assert::assertBaseUri($baseUri);
@@ -448,10 +420,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Set the base URI of the backend web service
-     *
-     * @param string $baseUri
-     *
-     * @return self
      */
     public function setBaseUri(string $baseUri): self
     {
@@ -462,8 +430,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Return the debug flag
-     *
-     * @return bool
      */
     public function getDebug(): bool
     {
@@ -478,8 +444,6 @@ abstract class AbstractReportingCloud
      * Set the debug flag
      *
      * @param bool $debug Debug flag
-     *
-     * @return self
      */
     public function setDebug(bool $debug): self
     {
@@ -490,8 +454,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Return the test flag
-     *
-     * @return bool
      */
     public function getTest(): bool
     {
@@ -504,10 +466,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Set the test flag
-     *
-     * @param bool $test
-     *
-     * @return self
      */
     public function setTest(bool $test): self
     {
@@ -518,8 +476,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Get the timeout (in seconds) of the backend web service
-     *
-     * @return int
      */
     public function getTimeout(): int
     {
@@ -532,10 +488,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Set the timeout (in seconds) of the backend web service
-     *
-     * @param int $timeout
-     *
-     * @return self
      */
     public function setTimeout(int $timeout): self
     {
@@ -546,8 +498,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Get the version string of the backend web service
-     *
-     * @return string
      */
     public function getVersion(): string
     {
@@ -560,10 +510,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Set the version string of the backend web service
-     *
-     * @param string $version
-     *
-     * @return self
      */
     public function setVersion(string $version): self
     {
@@ -574,8 +520,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Return the REST client of the backend web service
-     *
-     * @return Client
      */
     public function getClient(): Client
     {
@@ -602,10 +546,6 @@ abstract class AbstractReportingCloud
 
     /**
      * Set the REST client of the backend web service
-     *
-     * @param Client $client
-     *
-     * @return self
      */
     public function setClient(Client $client): self
     {
@@ -617,12 +557,9 @@ abstract class AbstractReportingCloud
     /**
      * Request the URI with options
      *
-     * @param string $method  HTTP method
-     * @param string $uri     URI
+     * @param string $method HTTP method
+     * @param string $uri URI
      * @param array  $options Options
-     *
-     * @return ResponseInterface
-     * @throws RuntimeException
      */
     protected function request(string $method, string $uri, array $options): ResponseInterface
     {
@@ -635,8 +572,8 @@ abstract class AbstractReportingCloud
                 $options[RequestOptions::QUERY]['test'] = Filter::filterBooleanToString($test);
             }
             $response = $client->request($method, $uri, $options);
-        } catch (GuzzleException $e) {
-            throw new RuntimeException($e->getMessage(), $e->getCode());
+        } catch (GuzzleException $guzzleException) {
+            throw new RuntimeException($guzzleException->getMessage(), $guzzleException->getCode());
         }
 
         return $response;
@@ -646,8 +583,6 @@ abstract class AbstractReportingCloud
      * Construct URI with version number
      *
      * @param string $uri URI
-     *
-     * @return string
      */
     protected function uri(string $uri): string
     {
@@ -656,23 +591,21 @@ abstract class AbstractReportingCloud
 
     /**
      * Return Authorization Header, with either API key or username and password
-     *
-     * @return string
-     * @throws InvalidArgumentException
      */
     private function getAuthorizationHeader(): string
     {
         $apiKey = $this->getApiKey();
 
-        if (strlen($apiKey) > 0) {
+        if (0 < strlen($apiKey)) {
             return sprintf('ReportingCloud-APIKey %s', $apiKey);
         }
 
         $username = $this->getUsername();
         $password = $this->getPassword();
 
-        if (strlen($username) > 0 && strlen($password) > 0) {
+        if (0 < strlen($username) && 0 < strlen($password)) {
             $value = sprintf('%s:%s', $username, $password);
+
             return sprintf('Basic %s', base64_encode($value));
         }
 
