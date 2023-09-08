@@ -28,7 +28,13 @@ return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->lineEnding($lineEnding());
 
     $ecsConfig->paths(
-        [sprintf('%s/demo', __DIR__), sprintf('%s/ecs.php', __DIR__), sprintf('%s/rector.php', __DIR__)]
+        [
+            sprintf('%s/bin', __DIR__),
+            sprintf('%s/data', __DIR__),
+            sprintf('%s/demo', __DIR__),
+            sprintf('%s/ecs.php', __DIR__),
+            sprintf('%s/rector.php', __DIR__),
+        ]
     );
 
     $ecsConfig->sets($sets());

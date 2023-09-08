@@ -16,6 +16,7 @@ namespace TextControlTest\ReportingCloud\Stdlib;
 
 use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Stdlib\ArrayUtils;
+use TextControlTest\ReportingCloud\AbstractReportingCloudTestCase;
 
 /**
  * Class ArrayUtilsTest
@@ -23,7 +24,7 @@ use TextControl\ReportingCloud\Stdlib\ArrayUtils;
  * @package TextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ArrayUtilsTest extends TestCase
+class ArrayUtilsTest extends AbstractReportingCloudTestCase
 {
     /**
      * @return array<string, array<int, int>|string>

@@ -16,6 +16,7 @@ namespace TextControlTest\ReportingCloud\Stdlib;
 
 use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Stdlib\StringUtils;
+use TextControlTest\ReportingCloud\AbstractReportingCloudTestCase;
 
 /**
  * Class StringUtilsTest
@@ -23,7 +24,7 @@ use TextControl\ReportingCloud\Stdlib\StringUtils;
  * @package TextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class StringUtilsTest extends TestCase
+class StringUtilsTest extends AbstractReportingCloudTestCase
 {
     public function testStartsWith(): void
     {

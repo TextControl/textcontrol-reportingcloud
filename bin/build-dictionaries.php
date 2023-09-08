@@ -9,7 +9,6 @@ declare(strict_types=1);
  *    resource/dictionaries.php
  *
  * The package maintainer should execute this script, whenever new dictionaries are added to the backend.
- *
  */
 
 include_once __DIR__ . '/bootstrap.php';
@@ -30,7 +29,7 @@ $reportingCloud = new ReportingCloud([
 
 $values = $reportingCloud->getAvailableDictionaries();
 
-if (0 === count($values)) {
+if ([] === $values) {
     $message = 'Cannot download the available dictionaries from the Reporting Cloud Web API.';
     throw new RuntimeException($message);
 }

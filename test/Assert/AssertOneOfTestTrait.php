@@ -18,12 +18,12 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\Assert\Assert;
 
 /**
- * Trait AssertRangeTraitTest
+ * Trait AssertOneOfTraitTest
  *
  * @package TextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertRangeTraitTest
+trait AssertOneOfTestTrait
 {
     // <editor-fold desc="Abstract methods">
 
@@ -45,20 +45,19 @@ trait AssertRangeTraitTest
 
     // </editor-fold>
 
-    public function testAssertRange(): void
+    public function testAssertOneOf(): void
     {
-        Assert::assertRange(5, 1, 10);
-        Assert::assertRange(1, 1, 10);
-        Assert::assertRange(10, 1, 10);
+        Assert::assertOneOf('a', ['a', 'b', 'c',]);
+        Assert::assertOneOf(1, [1, 2, 3,]);
 
         self::assertTrue(true);
     }
 
-    public function testAssertRangeWithInvalidValue(): void
+    public function testAssertOneOfWithInvalidValue(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a value between 1 and 10. Got: 11');
+        $this->expectExceptionMessage('Expected one of "a", "b", "c". Got "d"');
 
-        Assert::assertRange(11, 1, 10);
+        Assert::assertOneOf('d', ['a', 'b', 'c',]);
     }
 }

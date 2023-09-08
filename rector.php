@@ -17,7 +17,13 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->sets($sets());
 
     $rectorConfig->paths(
-        [sprintf('%s/demo', __DIR__), sprintf('%s/ecs.php', __DIR__), sprintf('%s/rector.php', __DIR__)]
+        [
+            sprintf('%s/bin', __DIR__),
+            sprintf('%s/data', __DIR__),
+            sprintf('%s/demo', __DIR__),
+            sprintf('%s/ecs.php', __DIR__),
+            sprintf('%s/rector.php', __DIR__),
+        ]
     );
 
     $rectorConfig->skip($skip());

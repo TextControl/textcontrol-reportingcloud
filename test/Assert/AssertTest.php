@@ -38,10 +38,10 @@ class AssertTest extends TestCase
     use AssertFilenameExistsTestTrait;
     use AssertImageFormatTestTrait;
     use AssertLanguageTestTrait;
-    use AssertOneOfTraitTest;
+    use AssertOneOfTestTrait;
     use AssertPageTestTrait;
-    use AssertRangeTraitTest;
-    use AssertRemoveTraitTest;
+    use AssertRangeTestTrait;
+    use AssertRemoveTestTrait;
     use AssertReturnFormatTestTrait;
     use AssertTemplateExtensionTestTrait;
     use AssertTemplateFormatTestTrait;

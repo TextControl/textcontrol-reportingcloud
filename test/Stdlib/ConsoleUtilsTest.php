@@ -16,6 +16,7 @@ namespace TextControlTest\ReportingCloud\Stdlib;
 
 use PHPUnit\Framework\TestCase;
 use TextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TextControlTest\ReportingCloud\AbstractReportingCloudTestCase;
 
 /**
  * Class ConsoleUtilsTest
@@ -23,7 +24,7 @@ use TextControl\ReportingCloud\Stdlib\ConsoleUtils;
  * @package TextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ConsoleUtilsTest extends TestCase
+class ConsoleUtilsTest extends AbstractReportingCloudTestCase
 {
     public function testCheckCredentials(): void
     {

@@ -18,12 +18,12 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\Assert\Assert;
 
 /**
- * Trait AssertRemoveTraitTest
+ * Trait AssertRangeTraitTest
  *
  * @package TextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertRemoveTraitTest
+trait AssertRangeTestTrait
 {
     // <editor-fold desc="Abstract methods">
 
@@ -45,41 +45,20 @@ trait AssertRemoveTraitTest
 
     // </editor-fold>
 
-    public function testAssertRemove(): void
+    public function testAssertRange(): void
     {
-        Assert::assertRemove(true);
-        Assert::assertRemove(false);
+        Assert::assertRange(5, 1, 10);
+        Assert::assertRange(1, 1, 10);
+        Assert::assertRange(10, 1, 10);
 
         self::assertTrue(true);
     }
 
-    public function testAssertRemoveWithInteger(): void
+    public function testAssertRangeWithInvalidValue(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected true or false. Got: 1');
+        $this->expectExceptionMessage('Expected a value between 1 and 10. Got: 11');
 
-        Assert::assertRemove(1);
-
-        self::assertTrue(true);
-    }
-
-    public function testAssertRemoveWithString(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected true or false. Got: "a"');
-
-        Assert::assertRemove('a');
-
-        self::assertTrue(true);
-    }
-
-    public function testAssertRemoveWithArray(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected true or false. Got: array');
-
-        Assert::assertRemove([1]);
-
-        self::assertTrue(true);
+        Assert::assertRange(11, 1, 10);
     }
 }

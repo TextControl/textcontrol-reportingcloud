@@ -21,7 +21,6 @@ declare(strict_types=1);
  *    resource/cultures.php
  *
  * The package maintainer should execute this script, whenever new cultures are added to the backend.
- *
  */
 
 include_once __DIR__ . '/bootstrap.php';
@@ -43,7 +42,7 @@ $dom = new DOMDocument();
 $dom->loadHTMLFile($url);
 
 $xpath = new DOMXPath($dom);
-$nodes = $xpath->query("//tr/td[1]");
+$nodes = $xpath->query('//tr/td[1]');
 
 if (!$nodes instanceof DOMNodeList || 0 === $nodes->count()) {
     $format  = 'Cannot download the available cultures from "%s"';

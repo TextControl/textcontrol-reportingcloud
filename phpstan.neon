@@ -5,6 +5,8 @@ parameters:
     bootstrapFiles:
         - vendor/autoload.php
     paths:
+        - bin
+        - data
         - demo
         - ecs.php
         - rector.php

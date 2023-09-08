@@ -18,12 +18,12 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\Assert\Assert;
 
 /**
- * Trait AssertOneOfTraitTest
+ * Trait AssertRemoveTraitTest
  *
  * @package TextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertOneOfTraitTest
+trait AssertRemoveTestTrait
 {
     // <editor-fold desc="Abstract methods">
 
@@ -45,19 +45,41 @@ trait AssertOneOfTraitTest
 
     // </editor-fold>
 
-    public function testAssertOneOf(): void
+    public function testAssertRemove(): void
     {
-        Assert::assertOneOf('a', ['a', 'b', 'c',]);
-        Assert::assertOneOf(1, [1, 2, 3,]);
+        Assert::assertRemove(true);
+        Assert::assertRemove(false);
 
         self::assertTrue(true);
     }
 
-    public function testAssertOneOfWithInvalidValue(): void
+    public function testAssertRemoveWithInteger(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected one of "a", "b", "c". Got "d"');
+        $this->expectExceptionMessage('Expected true or false. Got: 1');
 
-        Assert::assertOneOf('d', ['a', 'b', 'c',]);
+        Assert::assertRemove(1);
+
+        self::assertTrue(true);
+    }
+
+    public function testAssertRemoveWithString(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected true or false. Got: "a"');
+
+        Assert::assertRemove('a');
+
+        self::assertTrue(true);
+    }
+
+    public function testAssertRemoveWithArray(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected true or false. Got: array');
+
+        Assert::assertRemove([1]);
+
+        self::assertTrue(true);
     }
 }
