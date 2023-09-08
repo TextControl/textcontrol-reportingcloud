@@ -18,9 +18,6 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertOneOfTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertOneOfTrait
 {
@@ -28,15 +25,8 @@ trait AssertOneOfTrait
 
     /**
      * Check value is in values
-     *
-     * @param mixed                  $value
-     * @param array $values
-     * @param string                 $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
-    public static function assertOneOf($value, array $values, string $message = ''): void
+    public static function assertOneOf(mixed $value, array $values, string $message = ''): void
     {
         if (!in_array($value, $values, true)) {
             $array = [];
@@ -44,7 +34,7 @@ trait AssertOneOfTrait
                 $array[$key] = self::valueToString($record);
             }
             $valuesString = implode(', ', $array);
-            $format       = 0 === strlen($message) ? 'Expected one of %2$s. Got %1$s' : $message;
+            $format       = '' === $message ? 'Expected one of %2$s. Got %1$s' : $message;
             $message      = sprintf($format, self::valueToString($value), $valuesString);
             throw new InvalidArgumentException($message);
         }

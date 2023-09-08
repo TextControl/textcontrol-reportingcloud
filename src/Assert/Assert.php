@@ -14,12 +14,6 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud\Assert;
 
-/**
- * Class Assert
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
- */
 class Assert extends AbstractAssert
 {
     use AssertApiKeyTrait;

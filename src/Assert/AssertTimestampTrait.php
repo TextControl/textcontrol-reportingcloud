@@ -14,45 +14,30 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud\Assert;
 
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
-
 /**
  * Trait AssertTimestampTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertTimestampTrait
 {
-    use ValueToStringTrait;
     use AssertRangeTrait;
+    use ValueToStringTrait;
 
     /**
      * Minimum timestamp (EPOC)
-     *
-     * @var int
      */
     private static int $timestampMin = 0;
 
     /**
      * Maximum timestamp (PHP_INT_MAX)
-     *
-     * @var int
      */
     private static int $timestampMax = PHP_INT_MAX;
 
     /**
      * Check value is a valid timestamp
-     *
-     * @param int    $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertTimestamp(int $value, string $message = ''): void
     {
-        $format  = 0 === strlen($message) ? 'Timestamp (%1$s) must be in the range [%2$s..%3$s]' : $message;
+        $format  = '' === $message ? 'Timestamp (%1$s) must be in the range [%2$s..%3$s]' : $message;
         $message = sprintf(
             $format,
             self::valueToString($value),

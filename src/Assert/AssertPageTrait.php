@@ -14,45 +14,30 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud\Assert;
 
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
-
 /**
  * Trait AssertPageTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertPageTrait
 {
-    use ValueToStringTrait;
     use AssertRangeTrait;
+    use ValueToStringTrait;
 
     /**
      * Minimum page number
-     *
-     * @var int
      */
     private static int $pageMin = 1;
 
     /**
      * Maximum page number (PHP_INT_MAX)
-     *
-     * @var int
      */
     private static int $pageMax = PHP_INT_MAX;
 
     /**
      * Check value is a valid page number
-     *
-     * @param int    $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertPage(int $value, string $message = ''): void
     {
-        $format  = 0 === strlen($message) ? 'Page number (%1$s) must be in the range [%2$s..%3$s]' : $message;
+        $format  = '' === $message ? 'Page number (%1$s) must be in the range [%2$s..%3$s]' : $message;
         $message = sprintf(
             $format,
             self::valueToString($value),

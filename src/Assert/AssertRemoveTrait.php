@@ -18,9 +18,6 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertRemoveTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertRemoveTrait
 {
@@ -28,14 +25,11 @@ trait AssertRemoveTrait
 
     /**
      * Check value is a "remove_*" value
-     *
-     * @param mixed  $value
-     * @param string $message
      */
-    public static function assertRemove($value, string $message = ''): void
+    public static function assertRemove(mixed $value, string $message = ''): void
     {
         if (!is_bool($value)) {
-            $format  = 0 === strlen($message) ? 'Expected true or false. Got: %1$s' : $message;
+            $format  = '' === $message ? 'Expected true or false. Got: %1$s' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }

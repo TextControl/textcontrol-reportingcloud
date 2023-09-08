@@ -14,33 +14,23 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud\Assert;
 
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\Stdlib\Path;
 
 /**
  * Trait AssertLanguageTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertLanguageTrait
 {
-    use ValueToStringTrait;
     use AssertOneOfTrait;
+    use ValueToStringTrait;
 
     /**
      * Check value is a valid language
-     *
-     * @param string $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertLanguage(string $value, string $message = ''): void
     {
         $haystack = self::getDictionaries();
-        $format   = 0 === strlen($message) ? '%1$s contains an unsupported language' : $message;
+        $format   = '' === $message ? '%1$s contains an unsupported language' : $message;
         $message  = sprintf($format, self::valueToString($value));
 
         self::assertOneOf($value, $haystack, $message);
@@ -48,8 +38,6 @@ trait AssertLanguageTrait
 
     /**
      * Return the filename, containing languages aka dictionaries array
-     *
-     * @return string
      */
     public static function getDictionariesFilename(): string
     {
@@ -58,8 +46,6 @@ trait AssertLanguageTrait
 
     /**
      * Return languages aka dictionaries array
-     *
-     * @return array
      */
     private static function getDictionaries(): array
     {

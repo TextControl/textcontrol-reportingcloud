@@ -14,47 +14,32 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud\Assert;
 
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
-
 /**
  * Trait AssertApiKeyTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertApiKeyTrait
 {
-    use ValueToStringTrait;
     use AssertRangeTrait;
+    use ValueToStringTrait;
 
     /**
      * Minimum length of API key
-     *
-     * @var int
      */
     private static int $apiKeyMinLength = 20;
 
     /**
      * Maximum length of API key
-     *
-     * @var int
      */
     private static int $apiKeyMaxLength = 45;
 
     /**
      * Check value is a syntactically valid API key
-     *
-     * @param string $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertApiKey(string $value, string $message = ''): void
     {
         $len = strlen($value);
 
-        $format  = 0 === strlen($message) ? 'Length of API key (%1$s) must be in the range [%2$s..%3$s]' : $message;
+        $format  = '' === $message ? 'Length of API key (%1$s) must be in the range [%2$s..%3$s]' : $message;
         $message = sprintf(
             $format,
             self::valueToString($value),

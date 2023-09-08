@@ -14,34 +14,24 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud\Assert;
 
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\ReportingCloud;
 
 /**
  * Trait AssertReturnFormatTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertReturnFormatTrait
 {
-    use ValueToStringTrait;
     use AssertOneOfTrait;
+    use ValueToStringTrait;
 
     /**
      * Check value is a valid return format extension
-     *
-     * @param string $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertReturnFormat(string $value, string $message = ''): void
     {
         $ucValue = strtoupper($value);
 
-        $format  = 0 === strlen($message) ? '%1$s contains an unsupported return format file extension' : $message;
+        $format  = '' === $message ? '%1$s contains an unsupported return format file extension' : $message;
         $message = sprintf($format, self::valueToString($value));
 
         self::assertOneOf($ucValue, ReportingCloud::FILE_FORMATS_RETURN, $message);

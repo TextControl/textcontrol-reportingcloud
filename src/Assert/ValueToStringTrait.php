@@ -16,20 +16,13 @@ namespace TextControl\ReportingCloud\Assert;
 
 /**
  * Trait ValueToStringTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait ValueToStringTrait
 {
     /**
      * Convert value to string
-     *
-     * @param mixed $value
-     *
-     * @return string
      */
-    protected static function valueToString($value): string
+    protected static function valueToString(mixed $value): string
     {
         if (null === $value) {
             return 'null';
@@ -51,10 +44,10 @@ trait ValueToStringTrait
             if (method_exists($value, '__toString')) {
                 $format = '%1$s: %2$s';
 
-                return sprintf($format, get_class($value), self::valueToString($value->__toString()));
+                return sprintf($format, $value::class, self::valueToString($value->__toString()));
             }
 
-            return get_class($value);
+            return $value::class;
         }
 
         if (is_resource($value)) {

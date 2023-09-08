@@ -18,9 +18,6 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertBase64DataTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertBase64DataTrait
 {
@@ -28,18 +25,12 @@ trait AssertBase64DataTrait
 
     /**
      * Check value is valid base64 encoded data
-     *
-     * @param string $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertBase64Data(string $value, string $message = ''): void
     {
         $binaryData = base64_decode($value, true);
-        if (is_bool($binaryData) || 0 === strlen($binaryData)) {
-            $format  = 0 === strlen($message) ? '%1$s must be base64 encoded' : $message;
+        if (is_bool($binaryData) || '' === $binaryData) {
+            $format  = '' === $message ? '%1$s must be base64 encoded' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }

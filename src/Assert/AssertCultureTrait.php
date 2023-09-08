@@ -14,33 +14,23 @@ declare(strict_types=1);
 
 namespace TextControl\ReportingCloud\Assert;
 
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\Stdlib\Path;
 
 /**
  * Trait AssertLanguageTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertCultureTrait
 {
-    use ValueToStringTrait;
     use AssertOneOfTrait;
+    use ValueToStringTrait;
 
     /**
      * Check value is a valid culture
-     *
-     * @param string $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertCulture(string $value, string $message = ''): void
     {
         $haystack = self::getCultures();
-        $format   = 0 === strlen($message) ? '%1$s contains an unsupported culture' : $message;
+        $format   = '' === $message ? '%1$s contains an unsupported culture' : $message;
         $message  = sprintf($format, self::valueToString($value));
 
         self::assertOneOf($value, $haystack, $message);
@@ -48,8 +38,6 @@ trait AssertCultureTrait
 
     /**
      * Return the filename, containing cultures array
-     *
-     * @return string
      */
     public static function getCulturesFilename(): string
     {
@@ -58,8 +46,6 @@ trait AssertCultureTrait
 
     /**
      * Return cultures array
-     *
-     * @return array
      */
     private static function getCultures(): array
     {

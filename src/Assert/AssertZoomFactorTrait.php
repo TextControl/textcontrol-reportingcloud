@@ -14,45 +14,31 @@ namespace TextControl\ReportingCloud\Assert;
  * @copyright © 2022 Text Control GmbH
  */
 
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertZoomFactorTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertZoomFactorTrait
 {
-    use ValueToStringTrait;
     use AssertRangeTrait;
+    use ValueToStringTrait;
 
     /**
      * Minimum zoom factor
-     *
-     * @var int
      */
     private static int $zoomFactorMin = 1;
 
     /**
      * Maximum zoom factor
-     *
-     * @var int
      */
     private static int $zoomFactorMax = 400;
 
     /**
      * Check value is a valid zoom factor
-     *
-     * @param int    $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertZoomFactor(int $value, string $message = ''): void
     {
-        $format  = 0 === strlen($message) ? 'Zoom factor (%1$s) must be in the range [%2$s..%3$s]' : $message;
+        $format  = '' === $message ? 'Zoom factor (%1$s) must be in the range [%2$s..%3$s]' : $message;
         $message = sprintf(
             $format,
             self::valueToString($value),

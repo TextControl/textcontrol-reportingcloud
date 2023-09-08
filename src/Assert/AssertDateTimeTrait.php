@@ -22,9 +22,6 @@ use TextControl\ReportingCloud\ReportingCloud;
 
 /**
  * Trait AssertDateTimeTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertDateTimeTrait
 {
@@ -32,12 +29,6 @@ trait AssertDateTimeTrait
 
     /**
      * Check value is a valid DateTime string
-     *
-     * @param string $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertDateTime(string $value, string $message = ''): void
     {
@@ -45,7 +36,7 @@ trait AssertDateTimeTrait
         $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
 
         if (self::getDateTimeLength() !== strlen($value)) {
-            $format  = 0 === strlen($message) ? '%1$s has an invalid number of characters in it' : $message;
+            $format  = '' === $message ? '%1$s has an invalid number of characters in it' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }
@@ -56,27 +47,25 @@ trait AssertDateTimeTrait
             $dateTime = DateTime::createFromFormat($dateFormat, $value, $dateTimeZone);
             if ($dateTime instanceof DateTime) {
                 if (0 !== $dateTime->getOffset()) {
-                    $format  = 0 === strlen($message) ? '%1$s has an invalid offset' : $message;
+                    $format  = '' === $message ? '%1$s has an invalid offset' : $message;
                     $message = sprintf($format, self::valueToString($value));
                     throw new InvalidArgumentException($message);
                 }
             } else {
-                $format  = 0 === strlen($message) ? '%1$s is syntactically invalid' : $message;
+                $format  = '' === $message ? '%1$s is syntactically invalid' : $message;
                 $message = sprintf($format, self::valueToString($value));
                 throw new InvalidArgumentException($message);
             }
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             // @phpstan-ignore-next-line
-            $format  = 0 === strlen($message) ? 'Internal error validating %1$s - %2$s' : $message;
-            $message = sprintf($format, self::valueToString($value), self::valueToString($e->getMessage()));
+            $format  = '' === $message ? 'Internal error validating %1$s - %2$s' : $message;
+            $message = sprintf($format, self::valueToString($value), self::valueToString($exception->getMessage()));
             throw new InvalidArgumentException($message);
         }
     }
 
     /**
      * Get the length of the required dateTime string
-     *
-     * @return int
      */
     private static function getDateTimeLength(): int
     {
@@ -92,7 +81,7 @@ trait AssertDateTimeTrait
             $ret      = strlen($dateTime->format($dateFormat));
             unset($dateTime);
             unset($dateTimeZone);
-        } catch (Exception $e) {
+        } catch (Exception) {
             // continue;
         }
 

@@ -18,9 +18,6 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertRangeTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertRangeTrait
 {
@@ -28,19 +25,11 @@ trait AssertRangeTrait
 
     /**
      * Check value is in range min..max
-     *
-     * @param int    $value
-     * @param int    $min
-     * @param int    $max
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertRange(int $value, int $min, int $max, string $message = ''): void
     {
         if ($value < $min || $value > $max) {
-            $format  = 0 === strlen($message) ? 'Expected a value between %2$s and %3$s. Got: %1$s' : $message;
+            $format  = '' === $message ? 'Expected a value between %2$s and %3$s. Got: %1$s' : $message;
             $message = sprintf(
                 $format,
                 self::valueToString($value),

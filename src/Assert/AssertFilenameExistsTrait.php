@@ -18,9 +18,6 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertFilenameExistsTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertFilenameExistsTrait
 {
@@ -28,23 +25,17 @@ trait AssertFilenameExistsTrait
 
     /**
      * Check filename exists and is readable
-     *
-     * @param string $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertFilenameExists(string $value, string $message = ''): void
     {
         if (!is_readable($value)) {
-            $format  = 0 === strlen($message) ? '%1$s does not exist or is not readable' : $message;
+            $format  = '' === $message ? '%1$s does not exist or is not readable' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }
 
         if (!is_file($value)) {
-            $format  = 0 === strlen($message) ? '%1$s is not a regular file' : $message;
+            $format  = '' === $message ? '%1$s is not a regular file' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }

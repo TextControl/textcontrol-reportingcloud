@@ -20,9 +20,6 @@ use TextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
  * Trait AssertBaseUriTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertBaseUriTrait
 {
@@ -30,9 +27,6 @@ trait AssertBaseUriTrait
 
     /**
      * Check value is a known base URI
-     *
-     * @param string $value
-     * @param string $message
      */
     public static function assertBaseUri(string $value, string $message = ''): void
     {
@@ -43,7 +37,7 @@ trait AssertBaseUriTrait
         assert(is_string($host2));
 
         if (!StringUtils::endsWith($host2, $host1)) {
-            $format  = 0 === strlen($message) ? 'Expected base URI to end in %2$s. Got %1$s' : $message;
+            $format  = '' === $message ? 'Expected base URI to end in %2$s. Got %1$s' : $message;
             $message = sprintf($format, self::valueToString($value), self::valueToString($host1));
             throw new InvalidArgumentException($message);
         }

@@ -18,28 +18,19 @@ use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertTemplateNameTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertTemplateNameTrait
 {
-    use ValueToStringTrait;
     use AssertTemplateFormatTrait;
+    use ValueToStringTrait;
 
     /**
      * Check value is a valid template name
-     *
-     * @param string $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertTemplateName(string $value, string $message = ''): void
     {
-        if (basename($value) != $value) {
-            $format  = 0 === strlen($message) ? '%1$s contains path information (\'/\', \'.\', or \'..\')' : $message;
+        if (basename($value) !== $value) {
+            $format  = '' === $message ? '%1$s contains path information (\'/\', \'.\', or \'..\')' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }
@@ -48,8 +39,8 @@ trait AssertTemplateNameTrait
 
         try {
             self::assertTemplateFormat(/** @scrutinizer ignore-type */ $extension);
-        } catch (InvalidArgumentException $e) {
-            $format  = 0 === strlen($message) ? '%1$s contains an unsupported file extension' : $message;
+        } catch (InvalidArgumentException) {
+            $format  = '' === $message ? '%1$s contains an unsupported file extension' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }

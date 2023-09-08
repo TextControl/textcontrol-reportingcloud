@@ -23,9 +23,6 @@ namespace TextControl\ReportingCloud\Assert;
  * At the time of implementation (March 2019), the above component did not support strict types.
  * Since the ReportingCloud PHP SDK does support strict types, the necessary functions where cherry-picked from
  * Webmozart\Assert, strict typed, and insert into this component.
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 abstract class AbstractAssert
 {

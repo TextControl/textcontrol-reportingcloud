@@ -16,34 +16,24 @@ namespace TextControl\ReportingCloud\Assert;
 
 use ReflectionClass;
 use ReflectionException;
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\ReportingCloud;
 use TextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
  * Trait DocumentDividerTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertDocumentDividerTrait
 {
-    use ValueToStringTrait;
     use AssertOneOfTrait;
+    use ValueToStringTrait;
 
     /**
      * Check value is a valid document divider
-     *
-     * @param int    $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
     public static function assertDocumentDivider(int $value, string $message = ''): void
     {
         $haystack = self::getDocumentDividers();
-        $format   = 0 === strlen($message) ? '%1$s contains an unsupported document divider' : $message;
+        $format   = '' === $message ? '%1$s contains an unsupported document divider' : $message;
         $message  = sprintf($format, self::valueToString($value));
 
         self::assertOneOf($value, $haystack, $message);
@@ -51,8 +41,6 @@ trait AssertDocumentDividerTrait
 
     /**
      * Return document dividers array
-     *
-     * @return array
      */
     private static function getDocumentDividers(): array
     {
@@ -63,19 +51,15 @@ trait AssertDocumentDividerTrait
             $reflectionClass = new ReflectionClass($reportingCloud);
             $constants       = $reflectionClass->getConstants();
             unset($reportingCloud);
-        } catch (ReflectionException $e) {
+        } catch (ReflectionException) {
         }
 
-        $array = array_filter($constants, function (string $constantKey): bool {
-            if (StringUtils::startsWith($constantKey, 'DOCUMENT_DIVIDER_')) {
-                return true;
-            }
+        $array = array_filter(
+            $constants,
+            static fn(string $constantKey): bool => StringUtils::startsWith($constantKey, 'DOCUMENT_DIVIDER_'),
+            ARRAY_FILTER_USE_KEY
+        );
 
-            return false;
-        }, ARRAY_FILTER_USE_KEY);
-
-        $array = array_values($array);
-
-        return $array;
+        return array_values($array);
     }
 }
