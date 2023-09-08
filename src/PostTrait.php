@@ -485,7 +485,7 @@ trait PostTrait
     private function post(
         string $uri,
         array $query = [],
-        $json = '',
+        mixed $json = '',
         int $statusCode = 0
     ) {
 

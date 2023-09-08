@@ -16,9 +16,6 @@ namespace TextControl\ReportingCloud;
 
 /**
  * Class ReportingCloud
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 class ReportingCloud extends AbstractReportingCloud
 {
@@ -28,16 +25,9 @@ class ReportingCloud extends AbstractReportingCloud
     use PostTrait;
     use PutTrait;
 
-    // <editor-fold desc="Methods">
-
-    /**
-     * ReportingCloud constructor
-     *
-     * @param array $options
-     */
     public function __construct(array $options = [])
     {
-        if (count($options) > 0) {
+        if ([] !== $options) {
 
             $methods = [
                 // Credentials
@@ -56,11 +46,9 @@ class ReportingCloud extends AbstractReportingCloud
             foreach ($methods as $key => $method) {
                 if (array_key_exists($key, $options)) {
                     // @phpstan-ignore-next-line
-                    $this->$method($options[$key]);
+                    $this->{$method}($options[$key]);
                 }
             }
         }
     }
-
-    // </editor-fold>
 }

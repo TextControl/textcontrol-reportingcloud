@@ -91,7 +91,7 @@ trait PutTrait
     private function put(
         string $uri,
         array $query = [],
-        $json = '',
+        mixed $json = '',
         int $statusCode = 0
     ): string {
 

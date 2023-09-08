@@ -437,7 +437,7 @@ trait GetTrait
     private function get(
         string $uri,
         array $query = [],
-        $json = '',
+        mixed $json = '',
         int $statusCode = 0
     ) {
 

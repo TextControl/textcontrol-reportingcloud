@@ -27,9 +27,10 @@ return static function (RectorConfig $rectorConfig): void {
             sprintf('%s/src/Filter', __DIR__),
             sprintf('%s/src/PropertyMap', __DIR__),
             sprintf('%s/src/Stdlib', __DIR__),
+            sprintf('%s/src/AbstractReportingCloud.php', __DIR__),
+            sprintf('%s/src/ReportingCloud.php', __DIR__),
             sprintf('%s/src/BuildTrait.php', __DIR__),
             sprintf('%s/src/DeleteTrait.php', __DIR__),
-            sprintf('%s/src/AbstractReportingCloud.php', __DIR__),
             sprintf('%s/ecs.php', __DIR__),
             sprintf('%s/rector.php', __DIR__),
         ]
