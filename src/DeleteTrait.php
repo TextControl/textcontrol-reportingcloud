@@ -19,51 +19,14 @@ use Ctw\Http\HttpStatus;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use TextControl\ReportingCloud\Assert\Assert;
-use TextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TextControl\ReportingCloud\Exception\RuntimeException;
 
 /**
  * Trait DeleteTrait
- *
- * @package TextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
 trait DeleteTrait
 {
-    // <editor-fold desc="Abstract methods">
-
-    /**
-     * Construct URI with version number
-     *
-     * @param string $uri URI
-     *
-     * @return string
-     */
-    abstract protected function uri(string $uri): string;
-
-    /**
-     * Request the URI with options
-     *
-     * @param string $method  HTTP method
-     * @param string $uri     URI
-     * @param array  $options Options
-     *
-     * @return ResponseInterface
-     * @throws RuntimeException
-     */
-    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
-
-    // </editor-fold>
-
-    // <editor-fold desc="Methods">
-
     /**
      * Delete an API key
-     *
-     * @param string $key
-     *
-     * @return bool
-     * @throws InvalidArgumentException
      */
     public function deleteApiKey(string $key): bool
     {
@@ -78,11 +41,6 @@ trait DeleteTrait
 
     /**
      * Delete a template in template storage
-     *
-     * @param string $templateName
-     *
-     * @return bool
-     * @throws InvalidArgumentException
      */
     public function deleteTemplate(string $templateName): bool
     {
@@ -96,22 +54,31 @@ trait DeleteTrait
     }
 
     /**
+     * Construct URI with version number
+     *
+     * @param string $uri URI
+     */
+    abstract protected function uri(string $uri): string;
+
+    /**
+     * Request the URI with options
+     *
+     * @param string $method  HTTP method
+     * @param string $uri     URI
+     * @param array  $options Options
+     */
+    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
+
+    /**
      * Execute a DELETE request via REST client
      *
      * @param string $uri        URI
      * @param array  $query      Query
      * @param mixed  $json       JSON
      * @param int    $statusCode Required HTTP status code for response
-     *
-     * @return bool
      */
-    private function delete(
-        string $uri,
-        array $query = [],
-        mixed $json = '',
-        int $statusCode = 0
-    ): bool {
-
+    private function delete(string $uri, array $query = [], mixed $json = '', int $statusCode = 0): bool
+    {
         $options = [
             RequestOptions::QUERY => $query,
             RequestOptions::JSON  => $json,
@@ -121,6 +88,4 @@ trait DeleteTrait
 
         return $statusCode === $response->getStatusCode();
     }
-
-    // </editor-fold>
 }
