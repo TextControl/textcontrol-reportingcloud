@@ -46,9 +46,9 @@ $generator = str_replace($search, $replace, __FILE__);
 ArrayUtils::varExportToFile($filename, $values, $generator);
 
 ConsoleUtils::writeLn();
-ConsoleUtils::writeLn('The available dictionaries (%d) are %s.', count($values));
+ConsoleUtils::writeLn('The available dictionaries (%d) are %s.', [count($values), '...']);
 ConsoleUtils::writeLn();
-ConsoleUtils::writeLn('Written data file to "%s".', $filename);
+ConsoleUtils::writeLn('Written data file to "%s".', [$filename]);
 ConsoleUtils::writeLn();
 
 // ---------------------------------------------------------------------------------------------------------------------
