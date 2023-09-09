@@ -2,8 +2,8 @@
 
 # ReportingCloud PHP SDK
 
-[![Build Status](https://scrutinizer-ci.com/g/TextControl/txtextcontrol-reportingcloud-php/badges/build.png?b=master)](https://scrutinizer-ci.com/g/TextControl/txtextcontrol-reportingcloud-php/build-status/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TextControl/txtextcontrol-reportingcloud-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/TextControl/txtextcontrol-reportingcloud-php/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/TextControl/textcontrol-reportingcloud/badges/build.png?b=master)](https://scrutinizer-ci.com/g/TextControl/textcontrol-reportingcloud/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TextControl/textcontrol-reportingcloud/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/TextControl/textcontrol-reportingcloud/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/textcontrol/txtextcontrol-reportingcloud/v/stable)](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 [![composer.lock available](https://poser.pugx.org/textcontrol/txtextcontrol-reportingcloud/composerlock)](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 
@@ -19,11 +19,11 @@ Learn more about ReportingCloud at:
 
 Learn more about ReportingCloud PHP SDK at:
 
-* [ReportingCloud PHP SDK GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
+* [ReportingCloud PHP SDK GitHub page](https://github.com/TextControl/textcontrol-reportingcloud)
 
 * [ReportingCloud PHP SDK Packagist page](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 
-* [ReportingCloud PHP SDK API documentation](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/docs-api/)
+* [ReportingCloud PHP SDK API documentation](https://textcontrol.github.io/textcontrol-reportingcloud/docs-api/)
 
 * [ReportingCloud PHP SDK support](https://docs.reporting.cloud/docs/chapter/introduction/support)
 
