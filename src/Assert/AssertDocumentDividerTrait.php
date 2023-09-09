@@ -17,7 +17,6 @@ namespace TextControl\ReportingCloud\Assert;
 use ReflectionClass;
 use ReflectionException;
 use TextControl\ReportingCloud\ReportingCloud;
-use TextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
  * Trait DocumentDividerTrait
@@ -56,7 +55,7 @@ trait AssertDocumentDividerTrait
 
         $array = array_filter(
             $constants,
-            static fn(string $constantKey): bool => StringUtils::startsWith($constantKey, 'DOCUMENT_DIVIDER_'),
+            static fn(string $constantKey): bool => str_starts_with($constantKey, 'DOCUMENT_DIVIDER_'),
             ARRAY_FILTER_USE_KEY
         );
 

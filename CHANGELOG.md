@@ -2,8 +2,9 @@
 
 # CHANGELOG
 
-## dev-php81 (future 4.0.0)
+## dev-master (future 4.0.0)
 
+* Changed namespace from `TxTextControl\ReportingCloud` to `TextControl\ReportingCloud`.
 * Removed PHP 7.4 support.
 * Minor refactoring for PHP 8.1 compatibility.
 

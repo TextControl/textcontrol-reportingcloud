@@ -16,7 +16,6 @@ namespace TextControl\ReportingCloud\Assert;
 
 use TextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TextControl\ReportingCloud\ReportingCloud;
-use TextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
  * Trait AssertBaseUriTrait
@@ -36,7 +35,7 @@ trait AssertBaseUriTrait
         $host2 = parse_url($value, PHP_URL_HOST);
         assert(is_string($host2));
 
-        if (!StringUtils::endsWith($host2, $host1)) {
+        if (!str_ends_with($host2, $host1)) {
             $format  = '' === $message ? 'Expected base URI to end in %2$s. Got %1$s' : $message;
             $message = sprintf($format, self::valueToString($value), self::valueToString($host1));
             throw new InvalidArgumentException($message);

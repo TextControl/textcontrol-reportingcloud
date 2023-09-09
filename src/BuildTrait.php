@@ -20,7 +20,6 @@ use TextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TextControl\ReportingCloud\PropertyMap\DocumentSettings as DocumentSettingsPropertyMap;
 use TextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
 use TextControl\ReportingCloud\Stdlib\FileUtils;
-use TextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
  * Trait BuildTrait
@@ -67,7 +66,9 @@ trait BuildTrait
                     Assert::assertFilenameExists($value);
                     Assert::assertDocumentExtension($value);
                     $document['document'] = FileUtils::read($value, true);
-                } elseif ('divider' === $key) {
+                    continue;
+                }
+                if ('divider' === $key) {
                     assert(is_int($value));
                     Assert::assertDocumentDivider($value);
                     $document['documentDivider'] = $value;
@@ -99,7 +100,7 @@ trait BuildTrait
                 continue;
             }
             $value = $array[$key];
-            if (StringUtils::endsWith($key, '_date') && is_int($value)) {
+            if (str_ends_with($key, '_date') && is_int($value)) {
                 Assert::assertTimestamp($value);
                 $value = Filter::filterTimestampToDateTime($value);
             }
@@ -135,11 +136,11 @@ trait BuildTrait
                 assert(is_string($value));
                 Assert::assertCulture($value);
             }
-            if (StringUtils::startsWith($key, 'remove_')) {
+            if (str_starts_with($key, 'remove_')) {
                 Assert::assertRemove($value);
                 assert(is_bool($value));
             }
-            if (StringUtils::endsWith($key, '_date')) {
+            if (str_ends_with($key, '_date')) {
                 assert(is_int($value));
                 Assert::assertTimestamp($value);
                 $value = Filter::filterTimestampToDateTime($value);
