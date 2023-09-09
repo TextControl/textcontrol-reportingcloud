@@ -5,7 +5,7 @@
 ## dev-master (future 4.0.0)
 
 * Changed namespace from `TxTextControl\ReportingCloud` to `TextControl\ReportingCloud`.
-* Removed PHP 7.4 support.
+* Removed PHP 8.0 and PHP 7.4 support.
 * Minor refactoring for PHP 8.1 compatibility.
 
 ## 3.0.0 - 2021-06-21
