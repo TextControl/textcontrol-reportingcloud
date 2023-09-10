@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-RC_PATH=~/libs/textcontrol/textcontrol-reportingcloud
-GH_PATH=~/libs/textcontrol/textcontrol-reportingcloud-gh
+RC_PATH=~/lib/textcontrol/textcontrol-reportingcloud
+GH_PATH=~/lib/textcontrol/textcontrol-reportingcloud-gh
 
 # ----------------------------------------------------------------------------------------------------------------------
 
 rm -fr ${GH_PATH}
 
-git clone git@github.com:TextControl/textcontrol-reportingcloud-php.git --branch gh-pages ${GH_PATH}
+git clone git@github.com:TextControl/textcontrol-reportingcloud.git --branch gh-pages ${GH_PATH}
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ mkdir -p ${GH_PATH}/docs-api
 
 ~/.composer/vendor/bin/phpdoc run --cache-folder /tmp/ --directory ${RC_PATH}/src --target ${GH_PATH}/docs-api --template clean
 
-cd ${GH_PATH}
+cd ${GH_PATH} || exit
 
 git add .
 
@@ -30,7 +30,7 @@ git push origin gh-pages
 
 # ----------------------------------------------------------------------------------------------------------------------
 
-cd ${RC_PATH}
+cd ${RC_PATH} || exit
 
 rm -fr ${GH_PATH}/test-coverage
 
@@ -38,7 +38,7 @@ mkdir -p ${GH_PATH}/test-coverage
 
 ./vendor/bin/phpunit --coverage-html ${GH_PATH}/test-coverage
 
-cd ${GH_PATH}/test-coverage
+cd ${GH_PATH}/test-coverage || exit
 
 # GitHub pages will not serve
 # from hidden directories,
