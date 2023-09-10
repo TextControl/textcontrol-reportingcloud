@@ -1,6 +1,6 @@
 ![Logo](../resource/rc_logo_512.png)
 
-# ReportingCloud PHP SDK 4.0
+# ReportingCloud PHP SDK 3.0
 
 ## Introduction
 
@@ -12,17 +12,17 @@ This is the third major version since the release of the SDK in May 2016.
 
 ### Added Support for PHP 8.0
 
-ReportingCloud PHP SDK 4.0 is fully tested on PHP 8.0.
+ReportingCloud PHP SDK 3.0 is fully tested on PHP 8.0.
 
 ### Upgraded Minimum PHP Requirement to 7.4
 
-ReportingCloud PHP SDK 4.0 requires PHP 7.4 or newer in order to be installed. 
+ReportingCloud PHP SDK 3.0 requires PHP 7.4 or newer in order to be installed. 
 
 If you are using an earlier version of PHP, you may continue using using ReportingCloud PHP SDK 2.0, which supports PHP 7.1, or ReportingCloud PHP SDK 1.0, which supports PHP 5.6. Note however, that new backend features will only be added to the most current version of the SDK.
 
 ### Added Typed Properties
 
-One of most discussed new features of PHP 7.4 was [typed properties](https://stitcher.io/blog/typed-properties-in-php-74). ReportingCloud PHP SDK 4.0 now uses typed properties in all classes, resulting in improved security and code quality.
+One of most discussed new features of PHP 7.4 was [typed properties](https://stitcher.io/blog/typed-properties-in-php-74). ReportingCloud PHP SDK 3.0 now uses typed properties in all classes, resulting in improved security and code quality.
 
 ### Removed Nullable Type From Public Method Parameters
 
@@ -74,7 +74,7 @@ The SDK now uses PHPUnit 9.5 for unit tests.
 
 ### Removed class `StatusCode`
 
-Versions prior to ReportingCloud PHP SDK 4.0 shipped with `TextControl\ReportingCloud\StatusCode\StatusCode`, which offered an abstraction to HTTP status codes. This class has been removed in favor of the package `ctw/ctw-http`. `ctw/ctw-http` offers all the functionality of the `StatusCode` class.
+Versions prior to ReportingCloud PHP SDK 3.0 shipped with `TextControl\ReportingCloud\StatusCode\StatusCode`, which offered an abstraction to HTTP status codes. This class has been removed in favor of the package `ctw/ctw-http`. `ctw/ctw-http` offers all the functionality of the `StatusCode` class.
 
 ### PHPStan for Static Analysis
 
@@ -84,7 +84,7 @@ ReportingCloud PHP SDK 2.0 used three static analysis tools to check the code qu
 - [Psalm](https://psalm.dev)
 - [Phan](https://github.com/phan/phan)
 
-ReportingCloud PHP SDK 4.0 uses just PHPStan, with the [strict rules](https://github.com/phpstan/phpstan-strict-rules) enabled.
+ReportingCloud PHP SDK 3.0 uses just PHPStan, with the [strict rules](https://github.com/phpstan/phpstan-strict-rules) enabled.
 
 ### Deprecated Username and Password Authentication
 
@@ -117,10 +117,10 @@ The above properties and methods are marked with a `@deprecated` tag and will be
 
 ## Need Help?
 
-ReportingCloud PHP SDK 4.0 is authored and supported by Text Control GmbH, the manufacturer of the ReportingCloud Web API.
+ReportingCloud PHP SDK 3.0 is authored and supported by Text Control GmbH, the manufacturer of the ReportingCloud Web API.
 
 Despite our best efforts to create understandable documentation, demo applications and unit tests, we understand that there are times when you may need some technical assistance.
 
-If you have a question about ReportingCloud or ReportingCloud PHP SDK 4.0, we are here to help you.
+If you have a question about ReportingCloud or ReportingCloud PHP SDK 3.0, we are here to help you.
 
 Please refer to the [Getting Support](https://docs.reporting.cloud/docs/chapter/introduction/support) section of the ReportingCloud [documentation](https://docs.reporting.cloud/) to learn more about the support channels at your disposition.
