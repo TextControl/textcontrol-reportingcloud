@@ -41,7 +41,7 @@ if (!$reportingCloud->templateExists($templateName)) {
 
 $pageCount = $reportingCloud->getTemplatePageCount($templateName);
 
-ConsoleUtils::writeLn('"%s" contains %d page%s.', [$templateName]);
+ConsoleUtils::writeLn('"%s" contains %d page%s.', [$templateName, $pageCount, $pageCount === 1 ? '' : 's']);
 
 
 // Download a template from template storage
@@ -52,7 +52,7 @@ if (0 < strlen($binaryData)) {
     ConsoleUtils::writeLn('"%s" was downloaded.', [$templateName]);
     // Write the document's binary data to disk
     FileUtils::write($destinationFilename, $binaryData);
-    ConsoleUtils::writeLn('"%s" was written to "%s".', [$templateName]);
+    ConsoleUtils::writeLn('"%s" was written to "%s".', [$templateName, $destinationFilename]);
 } else {
     ConsoleUtils::writeLn('Error downloading "%s".', [$templateName]);
 }
@@ -62,7 +62,7 @@ if (0 < strlen($binaryData)) {
 
 $templateCount = $reportingCloud->getTemplateCount();
 
-ConsoleUtils::writeLn('There are %d template%s in template storage.', [$templateCount]);
+ConsoleUtils::writeLn('There are %d template%s in template storage.', [$templateCount, $templateCount === 1 ? '' : 's']);
 
 
 // Get an array of all templates in template storage

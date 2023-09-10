@@ -57,5 +57,5 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     // Output to console the location of the image file
 
-    ConsoleUtils::writeLn('"%s" was written to "%s".', [$templateName]);
+    ConsoleUtils::writeLn('"%s" was written to "%s".', [$templateName, $destinationFilename]);
 }

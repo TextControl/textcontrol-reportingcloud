@@ -15,8 +15,8 @@ use TextControl\ReportingCloud\Stdlib\ConsoleUtils;
 $getDemos = static function (): ArrayObject {
     $arrayObject = new ArrayObject();
     $iterator    = new DirectoryIterator(__DIR__);
-    $extensions = ['php'];
-    $skipFiles = [basename(__FILE__), 'bootstrap.php', 'init.php'];
+    $extensions  = ['php'];
+    $skipFiles   = [basename(__FILE__), 'bootstrap.php', 'init.php'];
     foreach ($iterator as $fileInfo) {
         if (!in_array($fileInfo->getExtension(), $extensions, true)) {
             continue;
@@ -29,6 +29,7 @@ $getDemos = static function (): ArrayObject {
         $arrayObject->offsetSet($index, $value);
     }
     $arrayObject->ksort();
+
     return $arrayObject;
 };
 
@@ -44,7 +45,7 @@ $fileInfos = $getDemos();
 
 foreach ($fileInfos as $fileInfo) {
 
-    ConsoleUtils::writeLn('%d/%d) Executing "%s"...', [$counter]);
+    ConsoleUtils::writeLn('%d/%d) Executing "%s"...', [$counter, $fileInfos->count(), $fileInfo->getFilename()]);
     ConsoleUtils::writeLn();
     $command = sprintf('%s %s', escapeshellarg(PHP_BINARY), escapeshellarg($fileInfo->getPathname()));
     passthru($command);

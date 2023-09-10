@@ -14,6 +14,6 @@ $reportingCloud = new ReportingCloud([
 
 // Iterate over the account settings array, outputting the key-value pairs to the console
 
-foreach (array_keys($reportingCloud->getAccountSettings()) as $key) {
-    ConsoleUtils::writeLn('- %s: %s', [$key]);
+foreach (array_keys($reportingCloud->getAccountSettings()) as  $key => $value) {
+    ConsoleUtils::writeLn('- %s: %s', [$key, $value]);
 }

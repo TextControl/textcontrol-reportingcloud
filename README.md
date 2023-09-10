@@ -29,7 +29,7 @@ Learn more about ReportingCloud PHP SDK at:
 
 ## Minimum Requirements
 
-As of [ReportingCloud PHP SDK 4.0](/doc/release-3.0.0.md), the PHP SDK requires **PHP 8.1** or **PHP 8.2**.
+As of [ReportingCloud PHP SDK 4.0](/doc/release-4.0.0.md), the PHP SDK requires **PHP 8.1** or **PHP 8.2**.
 
 All versions of PHP prior to 8.1 have reached [end-of-life](http://php.net/eol.php) and will no longer receive security updates. If your application is running in an older environment, it is highly recommended that you upgrade to a more recent version of PHP.
 
@@ -57,7 +57,7 @@ You are now ready to use the SDK.
 
 ## API Key for Demos and Unit Tests
 
-ReportingCloud PHP SDK ships with a number of sample applications (see `/demo` directory) and phpunit tests (see `/test` directory). The scripts in each of these directories require an [API key(https://docs.reporting.cloud/docs/chapter/introduction/apikey) for ReportingCloud to run. To avoid accidentally exposing the API key via a public GIT repository, you need to specify it first. There are two ways to do this:
+ReportingCloud PHP SDK ships with a number of sample applications (see `/demo` directory) and phpunit tests (see `/test` directory). The scripts in each of these directories require an [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey) for ReportingCloud to run. To avoid accidentally exposing the API key via a public GIT repository, you need to specify it first. There are two ways to do this:
 
 ### Using PHP Constants:
 
