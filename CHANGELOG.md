@@ -4,7 +4,10 @@
 
 ## dev-master (future 4.0.0)
 
-* Changed namespace from `TxTextControl\ReportingCloud` to `TextControl\ReportingCloud`.
+* Added [Rector](https://github.com/rectorphp/rector) and [EasyCodingStandard](https://github.com/easy-coding-standard/easy-coding-standard) to improve code quality and consistency. 
+* Changed namespace from `TxTextControl\ReportingCloud` to `TextControl\ReportingCloud` to bring the ReportingCloud PHP SDK in sync with other PHP packages authored by Text Control GmbH.
+* Removed `TxTextControl\ReportingCloud\Stdlib\StringUtils`.
+* Added support for PHP 8.2.
 * Removed PHP 8.0 and PHP 7.4 support.
 * Minor refactoring for PHP 8.1 compatibility.
 
