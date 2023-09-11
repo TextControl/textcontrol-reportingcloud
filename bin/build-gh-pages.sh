@@ -2,7 +2,7 @@
 
 LIB_PATH_COMPOSER=~/.composer/vendor/bin
 LIB_PATH_PACKAGE=~/lib/textcontrol/textcontrol-reportingcloud
-LIB_PATH_BRANCH=~/lib/textcontrol/textcontrol-reportingcloud-gh
+LIB_PATH_GH_PAGES=~/lib/textcontrol/textcontrol-reportingcloud-gh-pages
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -15,23 +15,17 @@ chmod +x $LIB_PATH_COMPOSER/phpdoc
 
 # ----------------------------------------------------------------------------------------------------------------------
 
-rm -fr $LIB_PATH_BRANCH
+rm -fr $LIB_PATH_GH_PAGES
 
-git clone git@github.com:TextControl/textcontrol-reportingcloud.git --branch gh-pages $LIB_PATH_BRANCH
+git clone git@github.com:TextControl/textcontrol-reportingcloud.git --branch gh-pages $LIB_PATH_GH_PAGES
 
-# ----------------------------------------------------------------------------------------------------------------------
+cd $LIB_PATH_GH_PAGES || exit
 
-rm -fr $LIB_PATH_BRANCH/docs-api
+rm -fr docs-api
 
-mkdir -p $LIB_PATH_BRANCH/docs-api
+mkdir -p docs-api
 
-$LIB_PATH_COMPOSER/phpdoc run            \
-    --cache-folder /tmp/                 \
-    --directory ${LIB_PATH_PACKAGE}/src  \
-    --target $LIB_PATH_BRANCH/docs-api   \
-    --template clean
-
-cd $LIB_PATH_BRANCH || exit
+$LIB_PATH_COMPOSER/phpdoc run --cache-folder /tmp/ --directory src --target docs-api --template clean
 
 # ----------------------------------------------------------------------------------------------------------------------
 
