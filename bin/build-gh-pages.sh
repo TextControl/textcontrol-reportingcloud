@@ -6,14 +6,19 @@ LIB_PATH_GH_PAGES=~/lib/textcontrol/textcontrol-reportingcloud-gh-pages
 
 # ----------------------------------------------------------------------------------------------------------------------
 
-rm $LIB_PATH_COMPOSER/phpdoc
+# Download and Install PHP Documentor
 
-wget --quiet https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.4.1/phpDocumentor.phar \
-      -O $LIB_PATH_COMPOSER/phpdoc
+cd $LIB_PATH_COMPOSER || exit
 
-chmod +x $LIB_PATH_COMPOSER/phpdoc
+rm phpdoc
+
+wget -q https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.4.1/phpDocumentor.phar -O phpdoc
+
+chmod +x phpdoc
 
 # ----------------------------------------------------------------------------------------------------------------------
+
+# Clone Repository and Build API Documentation
 
 rm -fr $LIB_PATH_GH_PAGES
 
@@ -25,9 +30,11 @@ rm -fr docs-api
 
 mkdir -p docs-api
 
-$LIB_PATH_COMPOSER/phpdoc run --cache-folder /tmp/ --directory src --target docs-api --template clean
+$LIB_PATH_COMPOSER/phpdoc run --cache-folder /tmp/ --directory $LIB_PATH_PACKAGE/src --target docs-api
 
 # ----------------------------------------------------------------------------------------------------------------------
+
+# Commit and Push API Documentation
 
 git add .
 
