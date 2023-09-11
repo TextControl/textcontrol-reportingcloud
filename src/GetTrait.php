@@ -216,7 +216,7 @@ trait GetTrait
     }
 
     /**
-     * Return an array properties for the templates in template storage
+     * Return an array of properties for the templates in template storage
      */
     public function getTemplateList(): array
     {
@@ -291,7 +291,7 @@ trait GetTrait
     }
 
     /**
-     * Return an array properties for the ReportingCloud account
+     * Return an array of properties for the ReportingCloud account
      */
     public function getAccountSettings(): array
     {
