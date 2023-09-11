@@ -30,7 +30,7 @@ rm -fr docs-api
 
 mkdir -p docs-api
 
-$LIB_PATH_WORKING/phpdoc run --cache-folder $LIB_PATH_WORKING --directory $LIB_PATH_PACKAGE/src --target docs-api
+$LIB_PATH_WORKING/phpdoc run --cache-folder=$LIB_PATH_WORKING --directory=$LIB_PATH_PACKAGE/src --target=docs-api
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -47,5 +47,7 @@ git push origin gh-pages
 # Clean Up
 
 rm -fr $LIB_PATH_WORKING/phpdoc $LIB_PATH_GH_PAGES
+
+echo "https://textcontrol.github.io/textcontrol-reportingcloud/docs-api/"
 
 # ----------------------------------------------------------------------------------------------------------------------
