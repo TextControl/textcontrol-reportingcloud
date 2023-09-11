@@ -773,7 +773,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\TextControl\\ReportingCloud\\GetTrait\u003A\u003AgetTemplateList\u0028\u0029",
             "name": "getTemplateList",
-            "summary": "Return\u0020an\u0020array\u0020properties\u0020for\u0020the\u0020templates\u0020in\u0020template\u0020storage",
+            "summary": "Return\u0020an\u0020array\u0020of\u0020properties\u0020for\u0020the\u0020templates\u0020in\u0020template\u0020storage",
             "url": "classes/TextControl-ReportingCloud-GetTrait.html#method_getTemplateList"
         },                {
             "fqsen": "\\TextControl\\ReportingCloud\\GetTrait\u003A\u003AgetTemplatePageCount\u0028\u0029",
@@ -793,7 +793,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\TextControl\\ReportingCloud\\GetTrait\u003A\u003AgetAccountSettings\u0028\u0029",
             "name": "getAccountSettings",
-            "summary": "Return\u0020an\u0020array\u0020properties\u0020for\u0020the\u0020ReportingCloud\u0020account",
+            "summary": "Return\u0020an\u0020array\u0020of\u0020properties\u0020for\u0020the\u0020ReportingCloud\u0020account",
             "url": "classes/TextControl-ReportingCloud-GetTrait.html#method_getAccountSettings"
         },                {
             "fqsen": "\\TextControl\\ReportingCloud\\GetTrait\u003A\u003AdownloadTemplate\u0028\u0029",
