@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-LIB_PATH_COMPOSER=~/.composer/vendor/bin
+LIB_PATH_WORKING=/tmp
 LIB_PATH_PACKAGE=~/lib/textcontrol/textcontrol-reportingcloud
 LIB_PATH_GH_PAGES=~/lib/textcontrol/textcontrol-reportingcloud-gh-pages
 
 # ----------------------------------------------------------------------------------------------------------------------
 
-# Download and Install PHP Documentor
+# Download and Install phpDocumentor
 
-cd $LIB_PATH_COMPOSER || exit
+cd $LIB_PATH_WORKING || exit
 
-rm phpdoc
+rm -f phpdoc
 
 wget -q https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.4.1/phpDocumentor.phar -O phpdoc
 
@@ -30,7 +30,7 @@ rm -fr docs-api
 
 mkdir -p docs-api
 
-$LIB_PATH_COMPOSER/phpdoc run --cache-folder /tmp/ --directory $LIB_PATH_PACKAGE/src --target docs-api
+$LIB_PATH_WORKING/phpdoc run --cache-folder $LIB_PATH_WORKING --directory $LIB_PATH_PACKAGE/src --target docs-api
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -41,5 +41,11 @@ git add .
 git commit -am"Updated API documentation"
 
 git push origin gh-pages
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Clean Up
+
+rm -fr $LIB_PATH_WORKING/phpdoc $LIB_PATH_GH_PAGES
 
 # ----------------------------------------------------------------------------------------------------------------------
