@@ -1,7 +1,9 @@
+
+.claude
 .idea
 .phpunit.cache
 .vscode
 build
 composer.lock
-vendor
 output
+vendor
